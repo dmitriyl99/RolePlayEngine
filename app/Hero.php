@@ -23,8 +23,19 @@ class Hero extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * The profile of hero
+     */
     public function profile() 
     {
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * The PDA of hero
+     */
+    public function pda() 
+    {
+        return $this->hasOne(Pda::class);
     }
 }
