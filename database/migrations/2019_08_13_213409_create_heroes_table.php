@@ -15,9 +15,8 @@ class CreateHeroesTable extends Migration
     {
         Schema::create('heroes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nickname')->nullable();
-            $table->string('name')->nullable();
             $table->integer('user_id')->unsigned();
+            $table->integer('profile_id')->unsigned();
             $table->timestamps();
         });
     }
