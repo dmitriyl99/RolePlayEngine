@@ -76,4 +76,12 @@ class User extends Authenticatable
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    /**
+     * All heroes of user
+     */
+    public function heroes() 
+    {
+        return $this->hasMany(Hero::class);
+    }
 }
