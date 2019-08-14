@@ -34,7 +34,10 @@ class HeroRepository implements HeroRepositoryInterface
      */
     public function delete($hero_id) 
     {
-        Hero::destroy($hero_id);
+        $hero = $this->get($hero_id);
+        $hero->profile()->delete();
+        $hero->pda()->delete();
+        $hero->delete();
     }
 
     /**
