@@ -31,5 +31,10 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\Locations\AreaRepositoryInterface',
             'App\Repositories\Locations\AreaRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Locations\LocationRepositoryInterface',
+            'App\Repositories\Locations\LocationRepository'
+        );
     }
 }
