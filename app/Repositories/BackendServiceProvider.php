@@ -12,5 +12,10 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\HeroRepositoryInterface',
             'App\Repositories\HeroRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\ProfileRepositoryInterface',
+            'App\Repositories\ProfileRepository'
+        );
     }
 }
