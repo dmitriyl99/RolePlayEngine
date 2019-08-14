@@ -21,6 +21,8 @@ class CreateHeroesTable extends Migration
             $table->integer('profile_id')->unsigned();
             $table->integer('pda_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
