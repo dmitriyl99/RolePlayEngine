@@ -12,6 +12,6 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        'content'
+        'content', 'confirmed'
     ];
 }
