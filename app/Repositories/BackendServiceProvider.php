@@ -8,6 +8,8 @@ class BackendServiceProvider extends ServiceProvider
 {
     public function register() 
     {
+        // Heroes Repositories
+
         $this->app->bind(
             'App\Repositories\Heroes\HeroRepositoryInterface',
             'App\Repositories\Heroes\HeroRepository'
@@ -21,6 +23,13 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repositories\Heroes\PdaRepositoryInterface',
             'App\Repositories\Heroes\PdaRepository'
+        );
+
+        // Locations Repositories
+
+        $this->app->bind(
+            'App\Repositories\Locations\AreaRepositoryInterface',
+            'App\Repositories\Locations\AreaRepository'
         );
     }
 }
