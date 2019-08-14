@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Respositories;
+namespace App\Repositories\Heroes;
 
 use App\Hero;
 
-class HeroRepository implements HeroRepositoryInterface 
+class HeroRepository implements HeroRepositoryInterface
 {
     /**
      * Get's a hero by it's id

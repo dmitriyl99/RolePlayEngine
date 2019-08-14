@@ -9,18 +9,18 @@ class BackendServiceProvider extends ServiceProvider
     public function register() 
     {
         $this->app->bind(
-            'App\Repositories\HeroRepositoryInterface',
-            'App\Repositories\HeroRepository'
+            'App\Repositories\Heroes\HeroRepositoryInterface',
+            'App\Repositories\Heroes\HeroRepository'
         );
 
         $this->app->bind(
-            'App\Repositories\ProfileRepositoryInterface',
-            'App\Repositories\ProfileRepository'
+            'App\Repositories\Heroes\ProfileRepositoryInterface',
+            'App\Repositories\Heroes\ProfileRepository'
         );
 
         $this->app->bind(
-            'App\Repositories\PdaRepositoryInterface',
-            'App\Repositories\PdaRepository'
+            'App\Repositories\Heroes\PdaRepositoryInterface',
+            'App\Repositories\Heroes\PdaRepository'
         );
     }
 }
