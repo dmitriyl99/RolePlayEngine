@@ -17,5 +17,10 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\ProfileRepositoryInterface',
             'App\Repositories\ProfileRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\PdaRepositoryInterface',
+            'App\Repositories\PdaRepository'
+        );
     }
 }
