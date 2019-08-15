@@ -9,15 +9,6 @@ use App\Place;
 interface PlaceRepositoryInterface
 {
     /**
-     * Create a place
-     *
-     * @param $place_data array
-     *
-     * @return Place
-    */
-    public function create($place_data);
-
-    /**
      * Get a place by it's ID
      *
      * @param $place_id int

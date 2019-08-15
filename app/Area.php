@@ -23,8 +23,6 @@ class Area extends Model
 
     /**
      * Get Area's places
-     *
-     * @return mixed
     */
     public function places()
     {
@@ -40,6 +38,17 @@ class Area extends Model
     public function addLocation($location_data)
     {
         return $this->locations()->create($location_data);
+    }
+
+    /**
+     * Add place to the Area
+     *
+     * @param $place_data array Place data
+     * @return Place
+    */
+    public function addPLace($place_data)
+    {
+        return $this->places()->create($place_data);
     }
 
 }

@@ -8,19 +8,6 @@ use App\Place;
 
 class PlaceRepository implements PlaceRepositoryInterface
 {
-
-    /**
-     * Create a place
-     *
-     * @param $place_data array
-     *
-     * @return Place
-     */
-    public function create($place_data)
-    {
-        return Place::create($place_data);
-    }
-
     /**
      * Get a place by it's ID
      *
