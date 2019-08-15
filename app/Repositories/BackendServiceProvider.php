@@ -48,5 +48,10 @@ class BackendServiceProvider extends ServiceProvider
             'App\Repositories\Rpg\PostRepositoryInterface',
             'App\Repositories\Rpg\PostRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Rpg\QuestRepositoryInterface',
+            'App\Repositories\Rpg\QuestRepository'
+        );
     }
 }
