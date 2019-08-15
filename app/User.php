@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -37,7 +36,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles() 
+    public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
@@ -45,7 +44,7 @@ class User extends Authenticatable
     /**
      * @param string|array $roles
      */
-    public function authorizeRole($roles) 
+    public function authorizeRole($roles)
     {
         if (is_array($roles)) {
             return $this->hasAneRole($roles) || abort(401, 'This action is unauthorized.');
@@ -56,9 +55,9 @@ class User extends Authenticatable
 
     /**
      * Check multiple roles
-     * 
+     *
      * @param array $roles
-     * 
+     *
      */
     public function hasAnyRole($roles)
     {
@@ -66,13 +65,17 @@ class User extends Authenticatable
     }
 
     /**
-     * 
+     *
      * Check one role
-     * 
+     *
      * @param string $role
+<<<<<<< HEAD
      * @return mixed
+=======
+     *
+>>>>>>> feat/locations
      */
-    public function hasRole($role) 
+    public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
@@ -80,7 +83,7 @@ class User extends Authenticatable
     /**
      * All heroes of user
      */
-    public function heroes() 
+    public function heroes()
     {
         return $this->hasMany(Hero::class);
     }

@@ -4,9 +4,9 @@ namespace App\Repositories;
 
 use Illuminate\Support\ServiceProvider;
 
-class BackendServiceProvider extends ServiceProvider 
+class BackendServiceProvider extends ServiceProvider
 {
-    public function register() 
+    public function register()
     {
         // Heroes Repositories
 
