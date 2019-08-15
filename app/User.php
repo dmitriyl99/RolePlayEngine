@@ -70,7 +70,7 @@ class User extends Authenticatable
      * Check one role
      * 
      * @param string $role
-     * 
+     * @return mixed
      */
     public function hasRole($role) 
     {
@@ -83,5 +83,10 @@ class User extends Authenticatable
     public function heroes() 
     {
         return $this->hasMany(Hero::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

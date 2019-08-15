@@ -38,4 +38,9 @@ class Hero extends Model
     {
         return $this->hasOne(Pda::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

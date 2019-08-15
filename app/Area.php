@@ -32,4 +32,12 @@ class Area extends Model
     {
         return $this->hasMany(Place::class);
     }
+
+    /**
+     * Get area's posts
+    */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
