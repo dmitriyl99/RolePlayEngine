@@ -39,8 +39,35 @@ class Hero extends Model
         return $this->hasOne(Pda::class);
     }
 
+    /**
+     * Posts of this hero
+    */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * All quests of this hero
+    */
+    public function quests()
+    {
+        return $this->hasMany(Quest::class);
+    }
+
+    /**
+     * Not completed quests of this hero
+    */
+    public function notCompletedQuests()
+    {
+        return $this->quests()->where('done', false)->get();
+    }
+
+    /**
+     * Completed quests of this hero
+    */
+    public function completedQuests()
+    {
+        return $this->quests()->where('done', true)->get();
     }
 }
