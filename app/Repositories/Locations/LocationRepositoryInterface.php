@@ -8,13 +8,6 @@ use App\Location;
 
 interface LocationRepositoryInterface
 {
-    /**
-     * Create a location
-     *
-     * @param $location_data array
-     * @return Location
-    */
-    public function create($location_data);
 
     /**
      * Get Location by it's ID
