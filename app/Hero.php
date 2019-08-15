@@ -8,7 +8,7 @@ class Hero extends Model
 {
     /**
      * Массово присваиваемые атрибуты
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -18,7 +18,7 @@ class Hero extends Model
     /**
      * The owner of this hero
      */
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -26,7 +26,7 @@ class Hero extends Model
     /**
      * The profile of hero
      */
-    public function profile() 
+    public function profile()
     {
         return $this->hasOne(Profile::class);
     }
@@ -34,7 +34,7 @@ class Hero extends Model
     /**
      * The PDA of hero
      */
-    public function pda() 
+    public function pda()
     {
         return $this->hasOne(Pda::class);
     }

@@ -8,14 +8,14 @@ class Area extends Model
 {
     /**
      * @var array
-    */
+     */
     protected $fillable = [
         'name', 'slug'
     ];
 
     /**
      * Get Area's locations
-    */
+     */
     public function locations()
     {
         return $this->hasMany(Location::class);
@@ -23,7 +23,7 @@ class Area extends Model
 
     /**
      * Get Area's places
-    */
+     */
     public function places()
     {
         return $this->hasMany(Place::class);
@@ -34,7 +34,7 @@ class Area extends Model
      *
      * @param $location_data array Location data
      * @return Location
-    */
+     */
     public function addLocation($location_data)
     {
         return $this->locations()->create($location_data);
@@ -45,7 +45,7 @@ class Area extends Model
      *
      * @param $place_data array Place data
      * @return Place
-    */
+     */
     public function addPLace($place_data)
     {
         return $this->places()->create($place_data);
