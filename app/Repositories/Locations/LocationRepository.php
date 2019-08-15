@@ -8,18 +8,6 @@ use App\Location;
 
 class LocationRepository implements LocationRepositoryInterface
 {
-
-    /**
-     * Create a location
-     *
-     * @param $location_data array
-     * @return Location
-     */
-    public function create($location_data)
-    {
-        return Location::create($location_data);
-    }
-
     /**
      * Get Location by it's ID
      *

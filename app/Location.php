@@ -32,12 +32,4 @@ class Location extends Model
     {
         return $this->hasMany(Place::class);
     }
-
-    /**
-     * Get location's posts
-    */
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
 }
