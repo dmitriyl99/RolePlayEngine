@@ -70,4 +70,15 @@ class Hero extends Model
     {
         return $this->quests()->where('done', true)->get();
     }
+
+    /**
+     * Add quest to the hero
+     *
+     * @param $quest_data array Quest data
+     * @return Quest
+    */
+    public function addQuest($quest_data)
+    {
+        return $this->quests()->create($quest_data);
+    }
 }
