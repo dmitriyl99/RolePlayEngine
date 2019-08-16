@@ -2,18 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Locations\AreaRepositoryInterface;
+use App\Repositories\Rpg\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     /**
+     * Areas repository
+     *
+     * @var AreaRepositoryInterface
+    */
+    protected $areasRepository;
+
+    /**
+     * Post repository
+     *
+     * @var PostRepositoryInterface
+    */
+    protected $postsRepository;
+
+    /**
      * Create a new controller instance.
+     *
+     * @param $areaRepository AreaRepositoryInterface
+     * @param $postRepository PostRepositoryInterface
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AreaRepositoryInterface $areaRepository, PostRepositoryInterface $postRepository)
     {
-        $this->middleware('auth');
+        $this->areasRepository = $areaRepository;
+        $this->postsRepository = $postRepository;
     }
 
     /**
@@ -23,6 +43,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $allAreas = $this->areasRepository->getAll();
+        $fileLastPosts = $this->postsRepository->getLastPosts(5);
+
+        $data = [
+            'areas' => $allAreas,
+            'fiveLastPosts' => $fileLastPosts
+        ];
+
+        return view('home', $data);
     }
 }
