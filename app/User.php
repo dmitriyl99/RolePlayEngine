@@ -42,7 +42,11 @@ class User extends Authenticatable
     }
 
     /**
+     * Authorize role for user
+     *
      * @param string|array $roles
+     *
+     * @return bool
      */
     public function authorizeRole($roles)
     {
@@ -58,6 +62,7 @@ class User extends Authenticatable
      *
      * @param array $roles
      *
+     * @return bool
      */
     public function hasAnyRole($roles)
     {
@@ -69,11 +74,8 @@ class User extends Authenticatable
      * Check one role
      *
      * @param string $role
-<<<<<<< HEAD
-     * @return mixed
-=======
      *
->>>>>>> feat/locations
+     * @return boolean
      */
     public function hasRole($role)
     {
