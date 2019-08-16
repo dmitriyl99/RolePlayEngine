@@ -30,4 +30,12 @@ interface PostRepositoryInterface
      * @param $post_id int Post's ID
     */
     public function delete($post_id);
+
+    /**
+     * Get several last posts
+     *
+     * @param $limit int Limit of lasts posts
+     * @return mixed
+    */
+    public function getLastPosts(int $limit);
 }

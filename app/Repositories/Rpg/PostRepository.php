@@ -40,4 +40,15 @@ class PostRepository implements PostRepositoryInterface
     {
         Post::destroy($post_id);
     }
+
+    /**
+     * Get several last posts
+     *
+     * @param $limit int Limit of lasts posts
+     * @return mixed
+     */
+    public function getLastPosts(int $limit)
+    {
+        return Post::order_by('created_at', 'desc')->limit($limit)->get()->toArray();
+    }
 }
