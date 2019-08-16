@@ -3,6 +3,8 @@
 
 namespace App\Repositories;
 
+use App\User;
+
 interface UserRepositoryInterface
 {
     /**
@@ -33,4 +35,12 @@ interface UserRepositoryInterface
      * @return mixed
     */
     public function getAllDescOrdering();
+
+    /**
+     * Get a user by it's ID
+     *
+     * @param int $user_id
+     * @return User
+    */
+    public function getById($user_id);
 }

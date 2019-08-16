@@ -50,4 +50,15 @@ class UserRepository implements UserRepositoryInterface
         return User::order_by('id', 'desc')
             ->get()->toArray();
     }
+
+    /**
+     * Get a user by it's ID
+     *
+     * @param int $user_id
+     * @return User
+     */
+    public function getById($user_id)
+    {
+        return User::find($user_id);
+    }
 }
