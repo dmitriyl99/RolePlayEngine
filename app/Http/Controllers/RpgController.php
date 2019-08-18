@@ -48,6 +48,7 @@ class RpgController extends Controller
     public function createPostForLocationPlace(Request $request, int $areaId, int $locationId, int $placeId)
     {
         $user = auth()->user();
+        $user->authorizeRole('player');
         $postContent = $request->get('content');
         $heroId = $request->get('heroId');
 
@@ -94,6 +95,7 @@ class RpgController extends Controller
         abort_if($place == null, 404);
 
         $user = auth()->user();
+        $user->authorizeRole('player');
         $postContent = $request->get('content');
         $heroId = $request->get('heroId');
 
