@@ -51,4 +51,15 @@ class PostRepository implements PostRepositoryInterface
     {
         return Post::order_by('created_at', 'desc')->limit($limit)->get()->toArray();
     }
+
+    /**
+     * Get a post by it's ID
+     *
+     * @param int $postId
+     * @return Post
+     */
+    public function getById(int $postId)
+    {
+        return Post::find($postId);
+    }
 }

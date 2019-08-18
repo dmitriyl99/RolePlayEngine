@@ -38,4 +38,12 @@ interface PostRepositoryInterface
      * @return mixed
     */
     public function getLastPosts(int $limit);
+
+    /**
+     * Get a post by it's ID
+     *
+     * @param int $postId
+     * @return Post
+    */
+    public function getById(int $postId);
 }
