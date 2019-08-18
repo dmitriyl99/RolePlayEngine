@@ -118,7 +118,9 @@ class RpgController extends Controller
 
     /**
      * Edit a post
-    */
+     * @param int $postId
+     * @return \Illuminate\Http\Response
+     */
     public function editPost(int $postId)
     {
         $post = $this->postRepository->getById($postId);
