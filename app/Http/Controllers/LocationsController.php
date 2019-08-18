@@ -92,12 +92,14 @@ class LocationsController extends Controller
     public function locationPlace(string $areaSlug, string $locationSlug, string $placeSlug)
     {
         $area = $this->areaRepository->getBySlug($areaSlug);
-        if ($areaSlug == null)
+        if ($area == null)
             abort(404);
         $location = $area->locations()->where('slug', $locationSlug)->first();
         if ($location == null)
             abort(404);
         $place = $location->places()->where('slug', $placeSlug)->first();
+        if ($place == null)
+            abort(404);
 
         $data = [
             'area' => $area,
