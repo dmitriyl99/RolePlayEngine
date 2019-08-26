@@ -81,4 +81,14 @@ class Hero extends Model
     {
         return $this->quests()->create($quest_data);
     }
+
+    /**
+     * Get nickname or name
+     *
+     * @return string
+    */
+    public function getName()
+    {
+        return ($this->nickname) ? $this->nickname : $this->name;
+    }
 }
