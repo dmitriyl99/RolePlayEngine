@@ -43,4 +43,11 @@ interface UserRepositoryInterface
      * @return User
     */
     public function getById($user_id);
+
+    /**
+     * Get all game masters
+     *
+     * @return array
+    */
+    public function getAllGameMasters();
 }

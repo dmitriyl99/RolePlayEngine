@@ -61,4 +61,19 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::find($user_id);
     }
+
+    /**
+     * Get all game masters
+     *
+     * @return array
+     */
+    public function getAllGameMasters()
+    {
+        $allUsers = $this->getAll();
+        $gameMasters = [];
+        foreach ($allUsers as $user)
+            if ($user->hasRole('game_master'))
+                array_push($gameMasters, $user);
+        return $gameMasters;
+    }
 }
