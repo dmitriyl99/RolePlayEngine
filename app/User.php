@@ -83,6 +83,21 @@ class User extends Authenticatable
     }
 
     /**
+     * Add role for user
+     *
+     * @param string $role
+     * @return void
+    */
+    public function addRole(string $role)
+    {
+        if ($this->hasRole($role))
+            return;
+        $role = Role::where('name', $role)->first();
+        abort_if($role == null, 404);
+        $this->roles()->attach($role);
+    }
+
+    /**
      * All heroes of user
      */
     public function heroes()
