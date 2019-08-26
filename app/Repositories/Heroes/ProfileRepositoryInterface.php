@@ -32,6 +32,7 @@ interface ProfileRepositoryInterface
      * Confirm the profile
      * 
      * @param int
+     * @return \App\Profile
      */
     public function confirmProfile($profile_id);
 }
