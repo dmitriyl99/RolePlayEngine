@@ -9,7 +9,7 @@ interface HeroRepositoryInterface
      * 
      * @param int
      * 
-     * @return App\Hero
+     * @return \App\Hero
      */
     public function get($hero_id);
 
