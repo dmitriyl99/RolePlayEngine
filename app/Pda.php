@@ -14,4 +14,9 @@ class Pda extends Model
     protected $fillable = [
         'content'
     ];
+
+    public function hero()
+    {
+        return $this->belongsTo(Hero::class);
+    }
 }

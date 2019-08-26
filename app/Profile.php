@@ -14,4 +14,9 @@ class Profile extends Model
     protected $fillable = [
         'content', 'confirmed'
     ];
+
+    public function hero()
+    {
+        return $this->belongsTo(Hero::class);
+    }
 }
