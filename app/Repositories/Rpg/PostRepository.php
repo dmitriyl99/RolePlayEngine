@@ -49,7 +49,7 @@ class PostRepository implements PostRepositoryInterface
      */
     public function getLastPosts(int $limit)
     {
-        return Post::order_by('created_at', 'desc')->limit($limit)->get()->toArray();
+        return Post::orderBy('created_at', 'desc')->limit($limit)->get()->toArray();
     }
 
     /**
