@@ -23,7 +23,9 @@ class CreatePostsTable extends Migration
             $table->integer('location_id')->unsigned()->nullable();
 
             $table->timestamps();
+        });
 
+        Schema::table('posts', function (Blueprint $table) {
             $table->foreign('user_id')->on('users')->onDelete('cascade');
             $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
             $table->foreign('place_id')->on('places')->onDelete('cascade');

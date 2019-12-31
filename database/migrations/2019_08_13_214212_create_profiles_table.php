@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->stirng('content');
+            $table->string('content');
             $table->boolean('confirmed')->default(false);
             $table->timestamps();
         });

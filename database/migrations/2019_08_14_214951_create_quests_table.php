@@ -23,7 +23,9 @@ class CreateQuestsTable extends Migration
             $table->boolean('done')->default(false);
             $table->integer('hero_id')->unsigned();
             $table->timestamps();
+        });
 
+        Schema::table('quests', function (Blueprint $table) {
             $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
         });
     }

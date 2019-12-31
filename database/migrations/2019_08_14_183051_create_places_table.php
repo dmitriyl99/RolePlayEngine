@@ -22,9 +22,12 @@ class CreatePlacesTable extends Migration
             $table->integer('location_id')->unsigned()->nullable();
             $table->integer('area_id')->unsigned()->nullable();
 
+            $table->timestamps();
+        });
+
+        Schema::table('places', function (Blueprint $table) {
             $table->foreign('location_id')->on('locations')->onDelete('cascade');
             $table->foreign('area_id')->on('areas')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

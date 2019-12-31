@@ -19,7 +19,9 @@ class CreateLocationsTable extends Migration
             $table->string('slug');
             $table->integer('area_id')->unsigned();
             $table->timestamps();
+        });
 
+        Schema::table('locations', function (Blueprint $table) {
             $table->foreign('area_id')->on('areas')->onDelete('cascade');
         });
     }
