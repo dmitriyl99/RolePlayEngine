@@ -13,4 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::middleware(['role-play'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});
