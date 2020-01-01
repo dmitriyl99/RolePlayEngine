@@ -60,9 +60,9 @@
                 </div>
                 <div class="content-header-section">
                     <ul class="nav-main-header">
-                        <li><a href="#">Южные земли</a></li>
-                        <li><a href="#">Магистраль</a></li>
-                        <li><a href="#">Северные земли</a></li>
+                        @foreach($areas as $area)
+                            <li><a href="/{{ $area->slug }}">{{ $area->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="content-header-section">
