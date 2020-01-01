@@ -26,20 +26,20 @@
     <!-- Codebase framework -->
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/pulse.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @yield('css')
     <!-- END Stylesheets -->
 
     <title>@yield('title') | {{ config('app.name') }}</title>
 </head>
 <body>
-    <div id="page-container" class="side-scroll page-header-modern page-header-inverse page-header-fixed">
+    <div id="page-container" class="side-scroll page-header-modern page-header-inverse page-header-fixed main-content-boxed">
         <header id="page-header">
             <div class="content-header">
                 <div class="content-header-section">
-                    <div class="content-header-item">
-                        <a href="{{ route('home') }}" class="link-effect font-w600">
-                            <span class="text-dual-primary-dark">S.T.A.L.K.E.R.</span>
-                            <span class="text-primary">Role play</span>
+                    <div class="content-header-logo">
+                        <a href="{{ route('home') }}" class="">
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 40px">
                         </a>
                     </div>
                 </div>
@@ -79,6 +79,112 @@
         <main id="main-container">
             <div class="bg-primary-darker text-body-color-light">
                 <div class="content">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-7">
+                            <div class="block block-rounded text-body-color-light bg-primary-dark-op js-appear-enabled animated fadeInLeft" data-toggle="appear">
+                                <div class="block-header">
+                                    <h3 class="block-title text-body-color-light">Свежие посты</h3>
+                                </div>
+                                <div class="block-content bg-primary-dark">
+                                    <ul class="list-group list-group-flush mb-20">
+                                        <li class="list-group-item bg-primary-dark clearfix">
+                                            <div class="float-left">
+                                                <div class="d-flex">
+                                                    <i class="fa fa-comments-o fa-2x"></i>
+                                                    <div class="d-flex flex-column ml-10">
+                                                        <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон - Бункер Сидоровича</a>
+                                                        <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
+                                                    <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-primary-dark clearfix">
+                                            <div class="float-left">
+                                                <div class="d-flex">
+                                                    <i class="fa fa-comments-o fa-2x"></i>
+                                                    <div class="d-flex flex-column ml-10">
+                                                        <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон - Бункер Сидоровича</a>
+                                                        <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
+                                                    <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-primary-dark clearfix">
+                                            <div class="float-left">
+                                                <div class="d-flex">
+                                                    <i class="fa fa-comments-o fa-2x"></i>
+                                                    <div class="d-flex flex-column ml-10">
+                                                        <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон - Бункер Сидоровича</a>
+                                                        <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
+                                                    <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-primary-dark clearfix">
+                                            <div class="float-left">
+                                                <div class="d-flex">
+                                                    <i class="fa fa-comments-o fa-2x"></i>
+                                                    <div class="d-flex flex-column ml-10">
+                                                        <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон - Бункер Сидоровича</a>
+                                                        <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
+                                                    <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item bg-primary-dark clearfix">
+                                            <div class="float-left">
+                                                <div class="d-flex">
+                                                    <i class="fa fa-comments-o fa-2x"></i>
+                                                    <div class="d-flex flex-column ml-10">
+                                                        <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон - Бункер Сидоровича</a>
+                                                        <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <div class="d-flex flex-column">
+                                                    <a href="#" class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
+                                                    <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                            <div class="block block-rounded text-body-color-light bg-primary-dark-op js-appear-enabled animated fadeInRight" style="height: 420px" data-toggle="appear">
+                                <div class="block-header">
+                                    <h3 class="block-title text-body-color-light fresh-posts text-right">Новые игроки</h3>
+                                </div>
+                                <div class="block-content bg-primary-dark"></div>
+                            </div>
+                        </div>
+                    </div>
                     @yield('content')
                 </div>
             </div>
@@ -96,6 +202,6 @@
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/jquery.appear.min.js') }}"></script>
-<script src="{{ asset('assets/js/codebase.js') }}"></script>
+<script src="{{ asset('assets/js/codebase.min.js') }}"></script>
 
 </html>
