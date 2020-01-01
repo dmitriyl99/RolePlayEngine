@@ -204,9 +204,14 @@
                 </div>
             </div>
         </main>
-        <footer id="page-footer">
+        <footer id="page-footer" class="bg-primary-dark text-body-color-light">
             <div class="content py-20 font-size-xs clearfix">
-
+                <div class="float-left">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 40px"> <span class="ml-10">Все права защищены.</span> <i class="fa fa-copyright"></i> {{ now()->year }}
+                </div>
+                <div class="float-right pt-10">
+                    Powered by <span class="text-primary">skaydi</span>
+                </div>
             </div>
         </footer>
     </div>
