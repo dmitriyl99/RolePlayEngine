@@ -37,4 +37,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('role-play');
     }
+
+    public function username()
+    {
+        return 'nickname';
+    }
+
+    public function redirectTo() {
+        return '/';
+    }
 }
