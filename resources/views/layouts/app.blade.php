@@ -74,7 +74,7 @@
                     @endguest
                     @auth<div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fa fa-user d-sm-none"></i>
+                                <i class="si si-user d-sm-none"></i>
                                 <span class="d-none d-sm-inline-block">{{ Auth::user()->nickname }}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
