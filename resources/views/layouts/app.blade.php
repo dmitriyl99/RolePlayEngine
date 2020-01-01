@@ -68,8 +68,8 @@
                 <div class="content-header-section">
                     @guest
                         <ul class="nav-main-header">
-                            <li><a href="#"><i class="si si-user mr-5"></i>Войти</a></li>
-                            <li><a href="#"><i class="si si-key"></i>Регистрация</a></li>
+                            <li><a href="{{ route('login') }}"><i class="si si-user mr-5"></i>Войти</a></li>
+                            <li><a href="{{ route('register') }}"><i class="si si-key"></i>Регистрация</a></li>
                         </ul>
                     @endguest
                     @auth
