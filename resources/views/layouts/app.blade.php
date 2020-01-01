@@ -72,19 +72,21 @@
                             <li><a href="{{ route('register') }}"><i class="si si-key"></i>Регистрация</a></li>
                         </ul>
                     @endguest
-                    @auth
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="si si-user d-sm-none"></i>
+                    @auth<div class="btn-group" role="group">
+                            <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="fa fa-user d-sm-none"></i>
                                 <span class="d-none d-sm-inline-block">{{ Auth::user()->nickname }}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                                <a href="#" class="dropdown-item"><i class="si si-user mr-5"></i>Профиль</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="si si-logout mr-5">Выйти</i>
+                            <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
+                                <a class="dropdown-item" href="#">
+                                    <i class="si si-user mr-5"></i> Профиль
                                 </a>
+                                <div class="dropdown-divider"></div>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="si si-logout mr-5"></i>Выйти</button>
+                                </form>
                             </div>
                         </div>
                     @endauth
@@ -222,6 +224,9 @@
 <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/jquery.appear.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/jquery.scrollLock.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('assets/js/codebase.min.js') }}"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
 
 </html>
