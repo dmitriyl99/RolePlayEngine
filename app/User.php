@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    const UPLOAD_DIRECTORY = 'uploads/avatars/';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'nickname'
+        'email', 'password', 'nickname', 'signature'
     ];
 
     /**
@@ -105,8 +109,35 @@ class User extends Authenticatable
         return $this->hasMany(Hero::class);
     }
 
+    /**
+     * All posts of user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function removeAvatar()
+    {
+        if ($this->avatar_url) {
+            Storage::delete(self::UPLOAD_DIRECTORY . $this->avatar_url);
+
+        }
+    }
+
+    public function saveAvatar($image) {
+        if (!$image) return;
+        $this->removeAvatar();
+        $filename = Str::random(10) . '.' . $image->extension();
+        $image->storeAs(self::UPLOAD_DIRECTORY, $filename);
+        $this->avatar_url = $filename;
+        $this->save();
+    }
+
+    public function getAvatar () {
+        if ($this->avatar_url)
+            return self::UPLOAD_DIRECTORY . $this->avatar_url;
+        return asset('assets/img/avatars/avatar0.jpg');
     }
 }
