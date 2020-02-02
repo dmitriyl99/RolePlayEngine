@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    const UPLOAD_DIRECTORY = 'uploads/avatars/';
+    const UPLOAD_DIRECTORY = 'storage/avatars/';
 
     /**
      * The attributes that are mass assignable.
