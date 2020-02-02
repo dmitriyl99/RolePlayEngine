@@ -75,7 +75,7 @@
                     @auth<div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="si si-user d-sm-none"></i>
-                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="img img-avatar img-avatar20 mr-5">
+                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class=" img img-avatar img-avatar24 mr-5">
                                 <span class="d-none d-sm-inline-block">{{ Auth::user()->nickname }}</span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
