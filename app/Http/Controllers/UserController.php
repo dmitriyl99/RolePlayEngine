@@ -41,18 +41,18 @@ class UserController extends Controller
             'user' => $current_user
         ];
 
-        return view('users/current', $data);
+        return view('users.profile', $data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $userId
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $userId)
+    public function show(int $id)
     {
-        $user = $this->userRepository->getById($userId);
+        $user = $this->userRepository->getById($id);
         if ($user == null) {
             abort(404);
         }
@@ -61,7 +61,7 @@ class UserController extends Controller
             'user' => $user
         ];
 
-        return view('users/show', $data);
+        return view('users.profile', $data);
     }
 
     /**
