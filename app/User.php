@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'nickname', 'signature'
+        'email', 'password', 'nickname', 'signature', 'name'
     ];
 
     /**
@@ -107,6 +107,15 @@ class User extends Authenticatable
     public function heroes()
     {
         return $this->hasMany(Hero::class);
+    }
+
+    /**
+     * Check if user has heroes
+     * @return bool
+     */
+    public function hasHeroes()
+    {
+        return $this->heroes()->count() > 0;
     }
 
     /**
