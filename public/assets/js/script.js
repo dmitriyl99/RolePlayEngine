@@ -9,3 +9,13 @@ jQuery(function () {
     };
     userDropdown();
 });
+
+// Function to convert UTC date to local user date on page
+jQuery(function() {
+    let elements = document.querySelectorAll('.js-utc-to-local');
+    elements.forEach(function (element) {
+        let dateString = element.innerHTML;
+        let dateUtc = new Date(dateString + " UTC");
+        element.innerHTML = dateUtc.toLocaleDateString() + " " + dateUtc.toLocaleTimeString();
+    });
+});
