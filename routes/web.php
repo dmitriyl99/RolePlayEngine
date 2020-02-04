@@ -15,4 +15,6 @@ Auth::routes();
 
 Route::middleware(['role-play'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/profile', 'UserController@index')->name('profile');
+    Route::get('/profile/{id}', 'UserController@show')->name('profile.show');
 });

@@ -80,7 +80,7 @@
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown" x-placement="bottom-end">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     <i class="si si-user mr-5"></i> Профиль
                                 </a>
                                 <div class="dropdown-divider"></div>
