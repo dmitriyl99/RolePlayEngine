@@ -46,16 +46,18 @@
                             </a>
                         </div>
                     @endforeach
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <a href="{{ route('hero.create') }}" class="block block-rounded block-link-rotate text-center text-body-color-light bg-primary-dark">
-                            <div class="block-content">
-                                <p class="mt-5">
-                                    <i class="si si-plus fa-4x text-primary"></i>
-                                </p>
-                                <p class="font-w600">Добавить</p>
-                            </div>
-                        </a>
-                    </div>
+                    @if (Auth::user() && Auth::user()->id === $user->id)
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <a href="{{ route('hero.create') }}" class="block block-rounded block-link-rotate text-center text-body-color-light bg-primary-dark">
+                                <div class="block-content">
+                                    <p class="mt-5">
+                                        <i class="si si-plus fa-4x text-primary"></i>
+                                    </p>
+                                    <p class="font-w600">Добавить</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             @else
                 <div class="py-30 text-center">
