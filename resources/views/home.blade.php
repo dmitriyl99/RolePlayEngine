@@ -15,7 +15,7 @@
                             <i class="si si-book-open fa-2x"></i>
                         </td>
                         <td>
-                            <a href="#" class="font-size-h5 font-w600">Данные</a>
+                            <a href="{{ route('profiles') }}" class="font-size-h5 font-w600">Данные</a>
                             <div class="text-muted my-5">Здесь хранятся данные как о тех, кто уже давно пересёк Периметр, так и о тех, кто ещё только собирается испытать свою судьбу.</div>
                         </td>
                         <td class="d-none d-md-table-cell">

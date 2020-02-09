@@ -14,11 +14,17 @@
 Auth::routes();
 
 Route::middleware(['role-play'])->group(function () {
+    // Home route
     Route::get('/', 'HomeController@index')->name('home');
+
+    // Profile routes
     Route::get('/profile', 'UserController@index')->name('profile');
     Route::get('/profile/create', 'HeroController@createhero')->name('hero.create');
     Route::post('/profile/create', 'HeroController@storeHero');
     Route::get('/profile/{id}', 'UserController@show')->name('profile.show');
+
+    // Info routes
+    Route::get('/profiles', 'InfoController@profiles')->name('profiles');
 });
 
 Route::post('/ckfinder/upload/image', 'HelperController@uploadCkfinderImage');
