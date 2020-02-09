@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Heroes;
 
+use App\Profile;
+
 interface ProfileRepositoryInterface
 {
     /**
@@ -42,4 +44,12 @@ interface ProfileRepositoryInterface
      * @return \App\Profile
      */
     public function confirmProfile($profile_id);
+
+    /**
+     * Get profile by id
+     *
+     * @param $profileId
+     * @return Profile
+     */
+    public function getProfileById($profileId);
 }

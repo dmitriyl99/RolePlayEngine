@@ -64,4 +64,12 @@ class ProfileRepository implements ProfileRepositoryInterface
             ->orderBy('created_at', 'desc')
             ->get();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getProfileById($profileId)
+    {
+        return Profile::findOrFail($profileId);
+    }
 }
