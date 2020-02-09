@@ -34,6 +34,14 @@
                                     </p>
                                     <p class="font-w600">{{ $hero->getName() }}</p>
                                     <small>Создан: <span  class="js-utc-to-local">{{ date('d.m.Y H:m', strtotime($hero->created_at)) }}</span></small>
+                                    @if (!$hero->profile->confirmed)
+                                        <br>
+                                        <small><i class="fa fa-warning text-warning mr-5"></i>Этот персонаж ещё не подтверждён гейм-мастерами!</small>
+                                    @else
+                                        <br>
+                                        <small class="si si-check text-success mr-5">Этот персонаж подтверждён гейм-мастерами!</small>
+                                    @endif
+                                    <br>
                                 </div>
                             </a>
                         </div>
