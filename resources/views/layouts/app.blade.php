@@ -238,7 +238,7 @@
                                 <div class="block-content bg-primary-dark">
                                     <ul class="list-group list-group-flush">
                                         @foreach($lastUsers as $user)
-                                            <li class="list-group-item bg-primary-dark">
+                                            <a href="{{ route('profile.show', $user->id) }}" class="list-group-item bg-primary-dark list-group-item-action">
                                                 <div class="row">
                                                     <div class="col-2">
                                                         <img src="{{ $user->getAvatar() }}" alt="" class="img img-avatar img-avatar32">
@@ -247,7 +247,7 @@
                                                         <span class="text-body-color-light">{{ $user->nickname }}</span>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            </a>
                                         @endforeach
                                     </ul>
                                 </div>
