@@ -6,3 +6,7 @@ a.text-primary:hover {
     width: 24px;
     height: 24px;
 }
+
+.profile-content p {
+    margin: 0;
+}
