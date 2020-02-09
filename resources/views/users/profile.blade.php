@@ -43,7 +43,7 @@
                 <div class="py-30 text-center">
                     <i class="si si-ghost text-primary display-3"></i>
                     <p class="mt-20 font-size-h5">У @if (Auth::user() && Auth::user()->id === $user->id) Вас @else этого пользователя @endif ещё нет ни одного персонажа</p>
-                    @if (Auth::user() && Auth::user()->id === $user->id)<a href="#" class="btn btn-alt-primary">Создать</a>@endif
+                    @if (Auth::user() && Auth::user()->id === $user->id)<a href="{{ route('hero.create') }}" class="btn btn-alt-primary">Создать</a>@endif
                 </div>
             @endif
         </div>
