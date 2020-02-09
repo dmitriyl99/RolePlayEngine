@@ -94,7 +94,7 @@ class HeroController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'nickname' => 'max:255',
+            'nickname' => 'max:255|unique:heroes',
             'content' => 'required|max:50000'
         ]);
         $user = auth()->user();
