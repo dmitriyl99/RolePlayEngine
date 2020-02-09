@@ -199,7 +199,22 @@
                                 <div class="block-header">
                                     <h3 class="block-title text-body-color-light fresh-posts text-right">Новые игроки</h3>
                                 </div>
-                                <div class="block-content bg-primary-dark"></div>
+                                <div class="block-content bg-primary-dark">
+                                    <ul class="list-group list-group-flush">
+                                        @foreach($lastUsers as $user)
+                                            <li class="list-group-item bg-primary-dark">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img src="{{ $user->getAvatar() }}" alt="" class="img img-avatar img-avatar32">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <span class="text-body-color-light">{{ $user->nickname }}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

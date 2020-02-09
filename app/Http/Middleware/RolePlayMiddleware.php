@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Post;
+use App\User;
 use Closure;
 use App\Area;
 use Illuminate\Support\Facades\View;
@@ -20,6 +21,7 @@ class RolePlayMiddleware
     {
         View::share('areas', Area::all());
         View::share('fiveLastPosts', Post::orderBy('created_at', 'desc')->limit(5)->get()->toArray());
+        View::share('lastUsers', User::orderBy('created_at', 'desc')->limit(5)->get());
         return $next($request);
     }
 }
