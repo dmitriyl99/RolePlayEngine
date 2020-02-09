@@ -37,4 +37,9 @@ class InfoController extends Controller
 
         return view('info.profiles', $data);
     }
+
+    public function showProfile(int $id)
+    {
+        return view('info.profile', ['profile' => $this->profileRepository->getProfileById($id)]);
+    }
 }
