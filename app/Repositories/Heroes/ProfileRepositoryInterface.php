@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Heroes;
 
-interface ProfileRepositoryInterface 
+interface ProfileRepositoryInterface
 {
     /**
      * Creates a profile
-     * 
+     *
      * @param array
      * @return App\Profile
      */
@@ -14,7 +14,7 @@ interface ProfileRepositoryInterface
 
     /**
      * Updates a profile
-     * 
+     *
      * @param int
      * @param array
      * @return App\Profile
@@ -23,14 +23,21 @@ interface ProfileRepositoryInterface
 
     /**
      * Gets all non-confirmed profiles
-     * 
+     *
      * @return collection
      */
     public function getNonConfirmedProfiles();
 
     /**
+     * Gets all confirmed profiles
+     *
+     * @return collection
+     */
+    public function getConfirmedProfiles();
+
+    /**
      * Confirm the profile
-     * 
+     *
      * @param int
      * @return \App\Profile
      */

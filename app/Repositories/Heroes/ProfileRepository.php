@@ -8,7 +8,7 @@ class ProfileRepository implements ProfileRepositoryInterface
 {
     /**
      * Creates an profile
-     * 
+     *
      * @param array
      * @return App\Profile
      */
@@ -19,7 +19,7 @@ class ProfileRepository implements ProfileRepositoryInterface
 
     /**
      * Updates the profile
-     * 
+     *
      * @param int
      * @param array
      * @return App\Profile
@@ -31,27 +31,37 @@ class ProfileRepository implements ProfileRepositoryInterface
 
     /**
      * Gets all non-confirmed profiles
-     * 
+     *
      * @return collection
      */
     public function getNonConfirmedProfiles()
     {
         return Profile::where('confirmed', false)
-                ->orderBy('creation_date', 'desc')
+                ->orderBy('created_at', 'desc')
                 ->get();
     }
 
     /**
      * Confirm the profile
-     * 
+     *
      * @param int $profile_id
      * @return Profile
      */
-    public function confirmProfile($profile_id) 
+    public function confirmProfile($profile_id)
     {
         $profile = Profile::find($profile_id);
         $profile->confirmed = true;
         $profile->save();
         return $profile;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getConfirmedProfiles()
+    {
+        return Profile::where('confirmed', true)
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 }
