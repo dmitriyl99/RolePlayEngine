@@ -88,7 +88,7 @@ class HeroController extends Controller
      *
      * @param Request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
     */
     public function storeHero(Request $request)
     {
@@ -112,8 +112,9 @@ class HeroController extends Controller
         $newProfile = $newHero->profile()->create($profileData);
         $gameMasters = $this->userRepository->getAllGameMasters();
         Notification::send($gameMasters, new NewProfile($newProfile));
+        $heroName = $newHero->getName();
 
-        return back();
+        return redirect('profile')->with('success', "Заявка на персонажа $heroName отправлена!");
     }
 
     /**
