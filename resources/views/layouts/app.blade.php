@@ -97,6 +97,42 @@
         <main id="main-container">
             <div class="bg-primary-darker text-body-color-light">
                 <div class="content">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-warning alert-block alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('info'))
+                        <div class="alert alert-info alert-block alert-dismissible fade show mb-0">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-sm-12 col-md-7">
                             <div class="block block-rounded text-body-color-light bg-primary-dark-op js-appear-enabled animated fadeInLeft" data-toggle="appear">
@@ -244,5 +280,6 @@
 <script src="{{ asset('assets/js/core/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('assets/js/codebase.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
+@yield('js')
 
 </html>
