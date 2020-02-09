@@ -25,6 +25,7 @@ Route::middleware(['role-play'])->group(function () {
 
     // Info routes
     Route::get('/profiles', 'InfoController@profiles')->name('profiles');
+    Route::get('/profiles/{id}', 'InfoController@showProfile')->name('profiles.show');
 });
 
 Route::post('/ckfinder/upload/image', 'HelperController@uploadCkfinderImage');

@@ -50,7 +50,7 @@
                                 <i class="si si-book-open fa-2x"></i>
                             </td>
                             <td>
-                                <a href="#" class="font-size-h5 font-w600">{{ $profile->hero->getName() }}</a>
+                                <a href="{{ route('profiles.show', $profile->id) }}" class="font-size-h5 font-w600">{{ $profile->hero->getName() }}</a>
                             </td>
                             <td class="d-none d-md-table-cell" style="width: 108.8px">
                                 <span class="font-size-sm">
