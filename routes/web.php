@@ -17,5 +17,8 @@ Route::middleware(['role-play'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/profile', 'UserController@index')->name('profile');
     Route::get('/profile/create', 'HeroController@createhero')->name('hero.create');
+    Route::post('/profile/create', 'HeroController@storeHero');
     Route::get('/profile/{id}', 'UserController@show')->name('profile.show');
 });
+
+Route::post('/ckfinder/upload/image', 'HelperController@uploadCkfinderImage');
