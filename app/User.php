@@ -146,7 +146,7 @@ class User extends Authenticatable
 
     public function getAvatar () {
         if ($this->avatar_url)
-            return self::UPLOAD_DIRECTORY . $this->avatar_url;
+            return asset(self::UPLOAD_DIRECTORY . $this->avatar_url);
         return asset('assets/img/avatars/avatar0.jpg');
     }
 }
