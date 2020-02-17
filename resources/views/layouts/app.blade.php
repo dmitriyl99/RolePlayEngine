@@ -72,7 +72,45 @@
                             <li><a href="{{ route('register') }}"><i class="si si-key"></i>Регистрация</a></li>
                         </ul>
                     @endguest
-                    @auth<div class="btn-group" role="group">
+                    @auth
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="si si-bell"></i>
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    <span class="badge badge-primary badge-pill" id="notifications-count">{{ Auth::user()->unreadNotifications->count() }}</span>
+                                @endif
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right min-width-300" aria-labelledby="page-header-notifications">
+                                <h5 class="h6 text-center py-5 mb-0 border-b text-uppercase">Оповещения</h5>
+                                @if (Auth::user()->notifications->count() > 0)
+                                    <ul class="list-unstyled my-20">
+                                        @foreach(Auth::user()->notifications as $notification)
+                                            <li>
+                                                @if (isset($notification->toArray()['data']['url']))
+                                                    <a href="{{ $notification->toArray()['data']['url'] }}" class="media mb-15">
+                                                    </a>
+                                                @elseif ($notification->type == 'App\\Notifications\\ProfileConfirmed')
+                                                    <a href="#" class="media mb-15 text-body-color-dark">
+                                                        <div class="ml-5 mr-15">
+                                                            <i class="fa fa-fw fa-check text-success"></i>
+                                                        </div>
+                                                        <div class="media-body pr-10">
+                                                            <p class="mb-0">Анкета вашего персонажа {{ $notification->toArray()['data']['profile']['hero']['nickname'] }} подтвержджена! Вы можете перейти к созданию ПДА.</p>
+                                                            <div class="text-muted font-size-sm font-italic">
+                                                                {{ $notification->created_at->diffForHumans() }}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                @else
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                @endif
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="si si-user d-sm-none"></i>
                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class=" img img-avatar img-avatar24 mr-5">
