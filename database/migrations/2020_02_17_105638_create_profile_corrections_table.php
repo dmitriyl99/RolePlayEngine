@@ -18,6 +18,7 @@ class CreateProfileCorrectionsTable extends Migration
             $table->string('description');
             $table->boolean('corrected')->default(false);
             $table->integer('profile_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
