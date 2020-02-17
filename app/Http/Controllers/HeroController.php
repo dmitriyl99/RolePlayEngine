@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notifications\NewProfile;
 use App\Notifications\ProfileConfirmed;
+use App\Notifications\NewProfileCorrection;
 use App\Repositories\Heroes\HeroRepositoryInterface;
 use App\Repositories\Heroes\PdaRepositoryInterface;
 use App\Repositories\Heroes\ProfileRepositoryInterface;
@@ -279,5 +280,20 @@ class HeroController extends Controller
         $heroName = $profile->hero->getName();
 
         return redirect()->back()->with('success', "Анкета персонажа $heroName принята!");
+    }
+
+    public function makeProfileCorrection(Request $request, int $profileId)
+    {
+        $user = auth()->user();
+        $user->authorizeRole('game_master');
+        $request->validate([
+            'content' => 'required|max:1000'
+        ]);
+        $profile = $this->profileRepository->getProfileById($profileId);
+        $profileCorrection = $profile->corrections()->create([
+            'description' => $request->get('content'),
+            'user_id' => $user->id
+        ]);
+        $profileCorrection->profile->hero->user->notify(new NewProfileCorrection($profileCorrection));
     }
 }
