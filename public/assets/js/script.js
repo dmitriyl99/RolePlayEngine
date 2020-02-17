@@ -8,6 +8,22 @@ jQuery(function () {
         })
     };
     userDropdown();
+
+    var notificationsDropdown = function () {
+        let userNotificationDropdown = jQuery('#page-header-notifications');
+        userNotificationDropdown.on('click', function (e) {
+            e.preventDefault();
+            userNotificationDropdown.next().toggleClass('show');
+            userNotificationDropdown.parent().toggleClass('show');
+            jQuery.get({
+                url: '/notifications/markAsRead',
+                success: function () {
+                    $('#notifications-count').addClass('d-none');
+                }
+            })
+        })
+    };
+    notificationsDropdown();
 });
 
 // Function to convert UTC date to local user date on page
