@@ -27,7 +27,7 @@
                 <div class="row">
                     @foreach($user->heroes as $hero)
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            <a href="#" class="block block-rounded block-link-rotate text-center text-body-color-light bg-primary-dark">
+                            <a href="{{ route('profiles.show', $hero->profile->id) }}" class="block block-rounded block-link-rotate text-center text-body-color-light bg-primary-dark">
                                 <div class="block-content">
                                     <p class="mt-5">
                                         <i class="si si-user fa-4x text-primary"></i>
@@ -39,7 +39,7 @@
                                         <small><i class="fa fa-warning text-warning mr-5"></i>Этот персонаж ещё не подтверждён гейм-мастерами!</small>
                                     @else
                                         <br>
-                                        <small class="si si-check text-success mr-5">Этот персонаж подтверждён гейм-мастерами!</small>
+                                        <small class="si si-check text-success mr-5"></small>Этот персонаж подтверждён гейм-мастерами!
                                     @endif
                                     <br>
                                 </div>
