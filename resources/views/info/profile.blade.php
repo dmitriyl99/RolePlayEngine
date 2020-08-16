@@ -9,7 +9,7 @@
         <div class="block-header">
             <h3 class="block-title text-body-color-light text-center">Анкета персонажа <span class="text-primary font-w700">{{ $profile->hero->getName() }}</span> <small class="text-muted">(владелец:
                     <a href="{{ route('profile.show', $profile->hero->user->id) }}">{{ $profile->hero->user->nickname }}</a>)</small></h3>
-            @if (Auth::user() && Auth::user()->hasRole('game_master'))
+            @if (Auth::user() && Auth::user()->hasRole('game_master') && !$profile->confirmed)
                 <div class="block-options">
                     <form action="{{ route('profiles.confirm', $profile->id) }}" method="post">
                         @csrf
