@@ -13,14 +13,14 @@ interface UserRepositoryInterface
      * @param int $user_id
      * @param array $user_data
     */
-    public function update($user_id, $user_data);
+    public function update($userId, $userData);
 
     /**
      * Delete a user
      *
      * @param int $user_id
     */
-    public function delete($user_id);
+    public function delete($userId);
 
     /**
      * Get all users
@@ -50,4 +50,12 @@ interface UserRepositoryInterface
      * @return array
     */
     public function getAllGameMasters();
+
+    /**
+     * Get user by slug
+     *
+     * @param string $slug
+     * @return mixed
+     */
+    public function getBySlug(string $slug);
 }

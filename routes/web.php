@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 Route::middleware(['role-play'])->group(function () {
@@ -18,10 +20,10 @@ Route::middleware(['role-play'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     // Profile routes
-    Route::get('/profile', 'UserController@index')->name('profile');
+    Route::get('/user', 'UserController@index')->name('profile');
     Route::get('/profile/create', 'HeroController@createhero')->name('hero.create');
     Route::post('/profile/create', 'HeroController@storeHero');
-    Route::get('/profile/{id}', 'UserController@show')->name('profile.show');
+    Route::get('/user/{slug}', 'UserController@show')->name('profile.show');
 
     // Info routes
     Route::get('/profiles', 'InfoController@profiles')->name('profiles');
@@ -30,6 +32,11 @@ Route::middleware(['role-play'])->group(function () {
     Route::post('/profiles/{profileId}/confirm', 'HeroController@confirmProfile')->name('profiles.confirm');
 
     Route::get('/notifications/markAsRead', 'NotificationsController@markAsRead');
+
+    Route::namespace('Admin')->name('admin.')->middleware(['auth'])->group(function () {
+        Route::resource('locations', 'LocationController');
+        Route::resource('areas', 'AreaController');
+    });
 });
 
 Route::post('/ckfinder/upload/image', 'HelperController@uploadCkfinderImage');

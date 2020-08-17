@@ -76,4 +76,9 @@ class UserRepository implements UserRepositoryInterface
                 array_push($gameMasters, $user);
         return $gameMasters;
     }
+
+    public function getBySlug(string $slug)
+    {
+        return User::where('slug', $slug)->firstOrFail();
+    }
 }

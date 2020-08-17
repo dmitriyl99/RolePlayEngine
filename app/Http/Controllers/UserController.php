@@ -13,7 +13,7 @@ class UserController extends Controller
      *
      * @var UserRepositoryInterface
     */
-    protected $userRepository;
+    protected UserRepositoryInterface $userRepository;
 
 
     /**
@@ -31,37 +31,26 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        $current_user = auth()->user();
+        $user = auth()->user();
 
-        $data = [
-            'user' => $current_user
-        ];
-
-        return view('users.profile', $data);
+        return view('users.profile', compact('user'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return \Illuminate\View\View
      */
-    public function show(int $id)
+    public function show(string $slug)
     {
-        $user = $this->userRepository->getById($id);
-        if ($user == null) {
-            abort(404);
-        }
+        $user = $this->userRepository->getBySlug($slug);
 
-        $data = [
-            'user' => $user
-        ];
-
-        return view('users.profile', $data);
+        return view('users.profile', compact('user'));
     }
 
     /**

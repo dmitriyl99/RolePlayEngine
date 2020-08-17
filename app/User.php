@@ -7,10 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, HasSlug;
 
     const UPLOAD_DIRECTORY = 'storage/avatars/';
 
@@ -149,5 +151,12 @@ class User extends Authenticatable
         if ($this->avatar_url)
             return asset(self::UPLOAD_DIRECTORY . $this->avatar_url);
         return asset('assets/img/avatars/avatar0.jpg');
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('nickname')
+            ->saveSlugsTo('slug');
     }
 }

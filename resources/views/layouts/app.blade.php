@@ -264,7 +264,7 @@
                         <div class="block-content bg-primary-dark">
                             <ul class="list-group list-group-flush">
                                 @foreach($lastUsers as $user)
-                                    <a href="{{ route('profile.show', $user->id) }}"
+                                    <a href="{{ route('profile.show', $user->slug) }}"
                                        class="list-group-item bg-primary-dark list-group-item-action">
                                         <div class="row">
                                             <div class="col-2">
