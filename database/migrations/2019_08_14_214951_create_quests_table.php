@@ -23,6 +23,8 @@ class CreateQuestsTable extends Migration
             $table->boolean('done')->default(false);
             $table->integer('hero_id')->unsigned();
             $table->timestamps();
+
+            $table->softDeletes();
         });
 
         Schema::table('quests', function (Blueprint $table) {

@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->string('content');
             $table->boolean('confirmed')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

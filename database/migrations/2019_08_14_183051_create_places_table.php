@@ -21,6 +21,7 @@ class CreatePlacesTable extends Migration
             $table->string('img_url')->nullable();
             $table->integer('location_id')->unsigned()->nullable();
             $table->integer('area_id')->unsigned()->nullable();
+            $table->softDeletes();
             $table->integer('position')->default(0);
 
             $table->timestamps();

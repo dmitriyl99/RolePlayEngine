@@ -19,6 +19,7 @@ class CreateLocationsTable extends Migration
             $table->string('slug');
             $table->integer('position')->default(0);
             $table->integer('area_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
 

@@ -16,6 +16,7 @@ class CreatePdasTable extends Migration
         Schema::create('pdas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('content');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

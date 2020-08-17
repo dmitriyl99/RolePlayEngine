@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->integer('place_id')->unsigned();
             $table->integer('area_id')->unsigned();
             $table->integer('location_id')->unsigned()->nullable();
+            $table->softDeletes();
 
             $table->timestamps();
         });
