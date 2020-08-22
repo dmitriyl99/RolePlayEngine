@@ -48,7 +48,17 @@
     </div>
     <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
         <div class="block-header">
-            <h3 class="block-title text-body-color-light font-w700 text-center">Локации</h3>
+            @if (auth()->user() and auth()->user()->hasRole('admin'))
+                <h3 class="block-title text-body-color-light font-w700">Локации</h3>
+                <div class="block-options">
+                    <a href="{{ route('admin.areas.create') }}" class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i class="si si-plus"></i> Создать зону</a>
+                    @if ($areas->count() > 0)
+                        <a href="{{ route('admin.locations.create') }}" class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i class="si si-plus"></i> Создать локацию</a>
+                    @endif
+                </div>
+            @else
+                <h3 class="block-title text-body-color-light font-w700 text-center">Локации</h3>
+            @endif
         </div>
         <div class="block-content bg-primary-dark">
             <table class="table table-stripped table-borderless table-vcenter">
@@ -57,10 +67,21 @@
                         <tr>
                             <td class="text-center" style="width: 65px;"><i class="si si-compass fa-2x"></i></td>
                             <td colspan="2">
-                                <span class="font-size-h5 text-primary font-w600">{{ $area->name }}</span>
+                                <div class="d-flex align-items-center">
+                                    <span class="font-size-h5 text-primary font-w600">{{ $area->name }}</span>
+                                    @if (auth()->user() and auth()->user()->hasRole('admin'))
+                                        <a href="{{ route('admin.areas.edit', $area->slug) }}" class="btn btn-sm btn-alt-primary btn-rounded bg-transparent text-body-color-light ml-10"><i class="fa fa-edit"></i> Редактировать</a>
+                                        <form action="{{ route('admin.areas.destroy', $area->id) }}" method="post" class="ml-10">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" onclick="return confirm('{{ __('Are you sure that you want delete this area?') }}')" class="btn btn-sm btn-alt-danger btn-rounded bg-transparent text-body-color-light"><i class="fa fa-trash"></i> Удалить</button>
+                                        </form>
+                                    @endif
+                                </div>
                             </td>
                             <td></td>
-                            <td></td>
+                            <td>
+                            </td>
                         </tr>
                         @foreach($area->locations as $location)
                             <tr>
