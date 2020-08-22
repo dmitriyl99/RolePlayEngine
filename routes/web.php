@@ -23,7 +23,7 @@ Route::middleware(['role-play'])->group(function () {
     Route::get('/user', 'UserController@index')->name('profile');
     Route::get('/profile/create', 'HeroController@createhero')->name('hero.create');
     Route::post('/profile/create', 'HeroController@storeHero');
-    Route::get('/user/{slug}', 'UserController@show')->name('profile.show');
+    Route::get('/user/{user}', 'UserController@show')->name('profile.show');
 
     // Info routes
     Route::get('/profiles', 'InfoController@profiles')->name('profiles');

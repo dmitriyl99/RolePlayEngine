@@ -43,74 +43,56 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param User $user
      * @return \Illuminate\View\View
      */
-    public function show(string $slug)
+    public function show(User $user)
     {
-        $user = $this->userRepository->getBySlug($slug);
-
         return view('users.profile', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $userId
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\View\View
      */
-    public function edit(int $userId)
+    public function edit(User $user)
     {
         auth()->user()->authorizeRole(['game_master', 'admin']);
 
-        $user = $this->userRepository->getById($userId);
-
-        if ($user == null) {
-            abort(404);
-        }
-
-        $data = [
-            'user' => $user,
-        ];
-
-        return view('users/edit', $data);
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $userId
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, int $userId)
+    public function update(Request $request, User $user)
     {
         auth()->user()->authorizeRole(['game_master', 'admin']);
 
-        $user = $this->userRepository->getById($userId);
-
-        if ($user == null)
-            abort(404);
-
-        $validatedData = $request->validate([
+        $request->validate([
             'nickname' => 'required|unique:users|max:255'
         ]);
 
-        $user->update($validatedData);
-        $previousUrl = url()->previous();
-        return redirect($previousUrl);
+        $this->userRepository->update($user, $request->all());
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $userId
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $userId)
+    public function destroy(User $user)
     {
 
-        $this->userRepository->delete($userId);
-        return redirect(url()->previous());
+        $this->userRepository->delete($user);
+        return redirect()->back();
     }
 }
