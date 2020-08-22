@@ -4,81 +4,58 @@
 namespace App\Repositories;
 
 
+use App\Role;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Hash;
+use PhpParser\Builder;
 
 class UserRepository implements UserRepositoryInterface
 {
 
-    /**
-     * Update a user
-     *
-     * @param int $user_id
-     * @param array $user_data
-     */
-    public function update($user_id, $user_data)
+    public function store(array $data) : User
     {
-        User::find($user_id)->update($user_data);
+        $user = User::create([
+            'name' => $data['name'],
+            'nickname' => $data['nickname'],
+            'email' => $data['email'],
+            'signature' => $data['signature'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $user
+            ->roles()
+            ->attach(Role::where('name', Role::PLAYER)->first());
+        $user->saveImage(request()->file('avatar'));
+        return $user;
     }
 
-    /**
-     * Delete a user
-     *
-     * @param int $user_id
-     */
-    public function delete($user_id)
+    public function update(User $user, array $userData) : User
     {
-        User::destroy($user_id);
+        $user->update($userData);
+        $user->saveImage(request()->file('avatar'));
+
+        return $user;
     }
 
-    /**
-     * Get all users
-     *
-     * @return mixed
-     */
+    public function delete(User $user)
+    {
+        $user->delete();
+    }
+
     public function getAll()
     {
         return User::all();
     }
 
-    /**
-     * Get all users ordering by descending
-     *
-     * @return mixed
-     */
     public function getAllDescOrdering()
     {
-        return User::order_by('id', 'desc')
-            ->get()->toArray();
+        return User::orderBy('created_at', 'desc');
     }
 
-    /**
-     * Get a user by it's ID
-     *
-     * @param int $user_id
-     * @return User
-     */
-    public function getById($user_id)
-    {
-        return User::find($user_id);
-    }
-
-    /**
-     * Get all game masters
-     *
-     * @return array
-     */
     public function getAllGameMasters()
     {
-        $allUsers = $this->getAll();
-        $gameMasters = [];
-        foreach ($allUsers as $user)
-            if ($user->hasRole('game_master'))
-                array_push($gameMasters, $user);
-        return $gameMasters;
-    }
-
-    public function getBySlug(string $slug)
-    {
-        return User::where('slug', $slug)->firstOrFail();
+        return User::whereHas('roles', function (Builder $query) {
+            $query->where('name', Role::GAME_MASTER);
+        })->get();
     }
 }

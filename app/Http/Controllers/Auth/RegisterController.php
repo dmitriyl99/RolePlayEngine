@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Repositories\UserRepositoryInterface;
 use App\User;
 use App\Role;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,8 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    protected UserRepositoryInterface $userRepository;
+
     /**
      * Where to redirect users after registration.
      *
@@ -34,12 +37,14 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->middleware('guest');
         $this->middleware('role-play');
+
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -66,17 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'nickname' => $data['nickname'],
-            'email' => $data['email'],
-            'signature' => $data['signature'],
-            'password' => Hash::make($data['password']),
-        ]);
-        $user
-            ->roles()
-            ->attach(Role::where('name', 'player')->first());
-        $user->saveAvatar(request()->file('avatar'));
-        return $user;
+        return $this->userRepository->store($data);
     }
 }
