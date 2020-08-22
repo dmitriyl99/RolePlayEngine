@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasSlug;
+    use Notifiable, SoftDeletes, HasSlug, HasImage;
 
     const UPLOAD_DIRECTORY = 'storage/avatars/';
 
@@ -118,7 +119,7 @@ class User extends Authenticatable
      */
     public function hasHeroes()
     {
-        return $this->heroes()->count() > 0;
+        return $this->heroes()->exists();
     }
 
     /**
@@ -130,33 +131,25 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function removeAvatar()
-    {
-        if ($this->avatar_url) {
-            Storage::delete(self::UPLOAD_DIRECTORY . $this->avatar_url);
-
-        }
-    }
-
-    public function saveAvatar($image) {
-        if (!$image) return;
-        $this->removeAvatar();
-        $filename = Str::random(10) . '.' . $image->extension();
-        $image->storeAs(self::UPLOAD_DIRECTORY, $filename);
-        $this->avatar_url = $filename;
-        $this->save();
-    }
-
-    public function getAvatar () {
-        if ($this->avatar_url)
-            return asset(self::UPLOAD_DIRECTORY . $this->avatar_url);
-        return asset('assets/img/avatars/avatar0.jpg');
-    }
-
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('nickname')
             ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function getUploadDirectory(): string
+    {
+        return 'avatars/';
+    }
+
+    public function getImageAttributeName(): string
+    {
+        return 'avatar_url';
     }
 }
