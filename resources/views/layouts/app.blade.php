@@ -121,7 +121,7 @@
                         <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="si si-user d-sm-none"></i>
-                            <img src="{{ Auth::user()->getAvatar() }}" alt="" class=" img img-avatar img-avatar24 mr-5">
+                            <img src="@if (auth()->user()->hasImage()) {{ auth()->user()->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" alt="" class=" img img-avatar img-avatar24 mr-5">
                             <span class="d-none d-sm-inline-block">{{ Auth::user()->nickname }}</span>
                             <i class="fa fa-angle-down ml-5"></i>
                         </button>
@@ -268,7 +268,7 @@
                                        class="list-group-item bg-primary-dark list-group-item-action">
                                         <div class="row">
                                             <div class="col-2">
-                                                <img src="{{ $user->getAvatar() }}" alt=""
+                                                <img src="@if ($user->hasImage()) {{ $user->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" alt=""
                                                      class="img img-avatar img-avatar32">
                                             </div>
                                             <div class="col-10">

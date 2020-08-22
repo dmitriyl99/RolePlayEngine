@@ -10,13 +10,13 @@
         <div class="block-content bg-primary-dark">
             <div class="row pb-20">
                 <div class="col-sm-12 col-md-6">
-                    <img src="{{ asset($user->getAvatar()) }}" class="img-fluid" alt="">
+                    <img src="@if ($user->hasImage()) {{ $user->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" class="img-fluid" alt="">
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-primary-dark text-body-color-light">Имя: <span class="font-w700">{{ $user->name }}</span>  a.k.a <span class="font-w700">{{ $user->nickname }}</span></li>
-                        <li class="list-group-item bg-primary-dark text-body-color-light">E-mail: @if (Auth::user() &&  Auth::user()->id === $user->id) <a href="mailto:{{ $user->email }}" class="font-w700">{{ $user->email }}</a> <small>(Адрес виден только вам)</small> @else Незачем тебе это знать! @endif</li>
-                        <li class="list-group-item bg-primary-dark text-body-color-light">Зарегистрирован: <span class="font-w700 js-utc-to-local">{{ date('d.m.Y H:m', strtotime($user->created_at)) }}</span></li>
+                        <li class="list-group-item bg-primary-dark text-body-color-light">E-mail: @if ((Auth::user() &&  Auth::user()->id === $user->id) or (auth()->user() and auth()->user()->hasRole('admin'))) <a href="mailto:{{ $user->email }}" class="font-w700">{{ $user->email }}</a> <small>(Адрес виден только вам)</small> @else Незачем тебе это знать! @endif</li>
+                        <li class="list-group-item bg-primary-dark text-body-color-light">Зарегистрирован: <span class="font-w700 js-utc-to-local">{{ $user->created_at }}</span></li>
                     </ul>
                 </div>
             </div>
