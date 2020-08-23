@@ -57,10 +57,12 @@ trait HasImage
     /**
      * Save model image
      *
-     * @param UploadedFile $image
+     * @param UploadedFile|null $image
      */
-    public function saveImage(UploadedFile $image)
+    public function saveImage(UploadedFile $image = null)
     {
+        if (is_null($image))
+            return;
         $attribute = $this->getImageAttributeName();
         $imageDirectory = $this->getUploadDirectory();
         $filename = $image->getClientOriginalName() . Str::random() . '.' . $image->getClientOriginalExtension();
