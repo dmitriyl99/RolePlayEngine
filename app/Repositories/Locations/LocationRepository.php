@@ -27,7 +27,7 @@ class LocationRepository implements LocationRepositoryInterface
      */
     public function getBySlug($location_slug)
     {
-        return Location::where('slug', $location_slug)->first();
+        return Location::with('area')->where('slug', $location_slug)->firstOrFail();
     }
 
     /**
@@ -51,5 +51,16 @@ class LocationRepository implements LocationRepositoryInterface
     public function delete($location_id)
     {
         Location::destroy($location_id);
+    }
+
+    /**
+     * Create a location
+     *
+     * @param $locationData
+     * @return Location
+     */
+    public function create($locationData)
+    {
+        return Location::create($locationData);
     }
 }

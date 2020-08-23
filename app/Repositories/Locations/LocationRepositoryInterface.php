@@ -41,4 +41,12 @@ interface LocationRepositoryInterface
      * @param $location_id int
     */
     public function delete($location_id);
+
+    /**
+     * Create a location
+     *
+     * @param $locationData
+     * @return Location
+     */
+    public function create($locationData);
 }
