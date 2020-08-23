@@ -31,6 +31,8 @@ Route::middleware(['role-play'])->group(function () {
 
     Route::post('/profiles/{profileId}/confirm', 'HeroController@confirmProfile')->name('profiles.confirm');
 
+    Route::get('{slug}', 'LocationsController@area')->name('area');
+
     Route::get('/notifications/markAsRead', 'NotificationsController@markAsRead');
 
     Route::namespace('Admin')->name('admin.')->middleware(['auth'])->group(function () {
