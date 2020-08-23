@@ -17,7 +17,7 @@ class CreateHeroesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('nickname')->nullable();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
 

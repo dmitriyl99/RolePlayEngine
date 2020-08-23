@@ -18,18 +18,16 @@ class CreatePostsTable extends Migration
             $table->string('content');
             $table->integer('user_id')->unsigned();
             $table->integer('hero_id')->unsigned();
-            $table->integer('place_id')->unsigned();
-            $table->integer('area_id')->unsigned();
-            $table->integer('location_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('place_id');
+            $table->unsignedBigInteger('area_id');
+            $table->unsignedBigInteger('location_id')->nullable();
             $table->softDeletes();
 
-            $table->timestamps();
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
             $table->foreign('user_id')->on('users')->onDelete('cascade');
             $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
             $table->foreign('place_id')->on('places')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

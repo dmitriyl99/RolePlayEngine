@@ -19,17 +19,15 @@ class CreatePlacesTable extends Migration
             $table->string('slug');
             $table->string('description');
             $table->string('img_url')->nullable();
-            $table->integer('location_id')->unsigned()->nullable();
-            $table->integer('area_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('area_id')->nullable();
             $table->softDeletes();
             $table->integer('position')->default(0);
 
-            $table->timestamps();
-        });
-
-        Schema::table('places', function (Blueprint $table) {
             $table->foreign('location_id')->on('locations')->onDelete('cascade');
             $table->foreign('area_id')->on('areas')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

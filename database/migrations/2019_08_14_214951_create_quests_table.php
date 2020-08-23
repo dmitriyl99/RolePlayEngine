@@ -21,14 +21,12 @@ class CreateQuestsTable extends Migration
             $table->date('gave_at')->nullable();
             $table->string('period')->nullable();
             $table->boolean('done')->default(false);
-            $table->integer('hero_id')->unsigned();
+            $table->unsignedBigInteger('hero_id');
             $table->timestamps();
 
-            $table->softDeletes();
-        });
-
-        Schema::table('quests', function (Blueprint $table) {
             $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
+
+            $table->softDeletes();
         });
     }
 

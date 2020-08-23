@@ -18,12 +18,10 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('position')->default(0);
-            $table->integer('area_id')->unsigned();
+            $table->unsignedBigInteger('area_id');
             $table->softDeletes();
             $table->timestamps();
-        });
 
-        Schema::table('locations', function (Blueprint $table) {
             $table->foreign('area_id')->on('areas')->onDelete('cascade');
         });
     }
