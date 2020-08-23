@@ -38,6 +38,11 @@ class Place extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
