@@ -63,7 +63,7 @@ class LocationsController extends Controller
             'area' => $area,
             'location' => $location
         ];
-        return view('locations/location', $data);
+        return view('locations.location', $data);
     }
 
     /**
