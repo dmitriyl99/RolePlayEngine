@@ -36,6 +36,7 @@ Route::middleware(['role-play'])->group(function () {
     Route::namespace('Admin')->name('admin.')->middleware(['auth'])->group(function () {
         Route::resource('locations', 'LocationController');
         Route::resource('areas', 'AreaController');
+        Route::resource('places', 'PlaceController');
     });
 });
 
