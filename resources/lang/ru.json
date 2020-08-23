@@ -1,0 +1,7 @@
+{
+    "Type name of area": "Введите название игровой зоны",
+    "Name of area must be a string": "Название игровой зоны должно быть ввидео строки (только цифры недопустимы)",
+    "Name of area must be less than :max symbols": "Название игровой зоны не должно превышать :max символов",
+    "Are you sure that you want delete this area?": "Вы уверены, что хотите удалить эту игровую зону?",
+    "Are you sure that you want delete this location": "Вы уверены, что хотите удалить эту локацию?"
+}
