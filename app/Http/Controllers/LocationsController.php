@@ -89,6 +89,14 @@ class LocationsController extends Controller
         return view('location/area_place', $data);
     }
 
+    /**
+     * Show place
+     *
+     * @param string $areaSlug
+     * @param string $locationSlug
+     * @param string $placeSlug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function locationPlace(string $areaSlug, string $locationSlug, string $placeSlug)
     {
         $area = $this->areaRepository->getBySlug($areaSlug);
@@ -107,6 +115,6 @@ class LocationsController extends Controller
             'place' => $place
         ];
 
-        return view('locations/location_place', $data);
+        return view('locations.place', $data);
     }
 }
