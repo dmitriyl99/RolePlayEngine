@@ -23,9 +23,9 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('location_id')->nullable();
             $table->softDeletes();
 
-            $table->foreign('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
-            $table->foreign('place_id')->on('places')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('hero_id')->references('id')->on('heroes')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -22,7 +22,7 @@ class CreateLocationsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('area_id')->on('areas')->onDelete('cascade');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
         });
     }
 

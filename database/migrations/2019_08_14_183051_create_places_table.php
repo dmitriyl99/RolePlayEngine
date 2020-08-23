@@ -24,8 +24,8 @@ class CreatePlacesTable extends Migration
             $table->softDeletes();
             $table->integer('position')->default(0);
 
-            $table->foreign('location_id')->on('locations')->onDelete('cascade');
-            $table->foreign('area_id')->on('areas')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
 
             $table->timestamps();
         });

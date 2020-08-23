@@ -24,7 +24,7 @@ class CreateQuestsTable extends Migration
             $table->unsignedBigInteger('hero_id');
             $table->timestamps();
 
-            $table->foreign('hero_id')->on('heroes')->onDelete('cascade');
+            $table->foreign('hero_id')->references('id')->on('heroes')->onDelete('cascade');
 
             $table->softDeletes();
         });
