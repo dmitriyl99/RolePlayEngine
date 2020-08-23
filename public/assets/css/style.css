@@ -10,3 +10,11 @@ a.text-primary:hover {
 .profile-content p {
     margin: 0;
 }
+
+.form-material .form-control[disabled] {
+    background-color: transparent;
+}
+
+.form-group select.form-control option {
+    color: #575757;
+}
