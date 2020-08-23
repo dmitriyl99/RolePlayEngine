@@ -81,4 +81,15 @@ class AreaController extends Controller
         $this->areaRepository->delete($id);
         return redirect()->back()->with('success', 'Игровая зона удалена');
     }
+
+    /**
+     * Get Area locations
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function locations($id)
+    {
+        return response()->json($this->areaRepository->getById($id)->locations, 200);
+    }
 }
