@@ -87,7 +87,19 @@
                             <tr>
                                 <td></td>
                                 <td class="text-center" style="width: 65px;"><i class="si si-compass fa-2x"></i></td>
-                                <td><a href="/{{ $area->slug }}/{{ $location->slug }}" class="font-size-h5 font-w600">{{ $location->name }}</a></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="/{{ $area->slug }}/{{ $location->slug }}" class="font-size-h5 font-w600">{{ $location->name }}</a>
+                                        @if (auth()->user() and auth()->user()->hasRole('admin'))
+                                            <a href="{{ route('admin.locations.edit', $location->slug) }}" class="btn btn-sm btn-alt-primary btn-rounded bg-transparent text-body-color-light ml-10"><i class="fa fa-edit"></i> Редактировать</a>
+                                            <form action="{{ route('admin.locations.destroy', $location->id) }}" method="post" class="ml-10">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" onclick="return confirm('{{ __('Are you sure that you want delete this location?') }}')" class="btn btn-sm btn-alt-danger btn-rounded bg-transparent text-body-color-light"><i class="fa fa-trash"></i> Удалить</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
                                 <td class="d-none d-md-table-cell text-right">
                                     <span class="font-size-sm">
                                         от <a href="">Нулевой</a>
