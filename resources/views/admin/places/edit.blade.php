@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group @error('location_id') is-invalid @enderror">
                     <div class="form-material floating form-material-primary open">
-                        <select name="location_id" id="location_id" disabled class="form-control text-body-color-light">
+                        <select name="location_id" id="location_id" class="form-control text-body-color-light">
                             @foreach($place->area->locations as $location)
                                 <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
