@@ -38,19 +38,19 @@ class RpgController extends Controller
     }
 
     /**
-     * Create a post for place in location
+     * Create a post
      *
-     * @param int $areaId
-     * @param int $locationId
-     * @param int $placeId
-     * @return \Illuminate\Http\Response
-    */
-    public function createPostForLocationPlace(Request $request, int $areaId, int $locationId, int $placeId)
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createPost(Request $request)
     {
         $user = auth()->user();
-        $user->authorizeRole('player');
         $postContent = $request->get('content');
-        $heroId = $request->get('heroId');
+        $heroId = $request->get('hero_id');
+        $areaId = $request->get('area_id');
+        $locationId = $request->get('location_id');
+        $placeId = $request->get('place_id');
 
         $area = $this->areaRepository->getById($areaId);
         if ($area == null)
@@ -73,47 +73,11 @@ class RpgController extends Controller
 
         $this->postRepository->create($postData);
 
-        return redirect()->route('location_place', [
+        return redirect()->route('place', [
             'areaSlug' => $area->slug,
             'locationSlug' => $location->slug,
             'placeSlug' => $place->slug
         ])->withCookie(cookie('lastHeroId', $heroId, 525600));
-    }
-
-    /**
-     * Create a post for place in area
-     *
-     * @param int $areaId
-     * @param int $placeId
-     * @return \Illuminate\Http\Response
-    */
-    public function createPostForAreaPlace(Request $request, int $areaId, int $placeId)
-    {
-        $area = $this->areaRepository->getById($areaId);
-        abort_if($area == null, 404);
-        $place = $area->places()->find($placeId);
-        abort_if($place == null, 404);
-
-        $user = auth()->user();
-        $user->authorizeRole('player');
-        $postContent = $request->get('content');
-        $heroId = $request->get('heroId');
-
-        $postData = [
-            'content' => $postContent,
-            'user_id' => $user->id,
-            'hero_id' => $heroId,
-            'area_id' => $areaId,
-            'place_id' => $placeId
-        ];
-
-        $this->postRepository->create($postData);
-
-        return redirect()->route('area_place', [
-            'areaSlug' => $area->slug,
-            'placeSlug' => $place->slug
-        ])->withCookie(cookie('lastHeroId', $heroId, 525600));
-
     }
 
     /**
