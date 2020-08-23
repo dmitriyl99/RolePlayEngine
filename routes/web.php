@@ -31,8 +31,6 @@ Route::middleware(['role-play'])->group(function () {
 
     Route::post('/profiles/{profileId}/confirm', 'HeroController@confirmProfile')->name('profiles.confirm');
 
-    Route::get('{slug}', 'LocationsController@area')->name('area');
-
     Route::get('/notifications/markAsRead', 'NotificationsController@markAsRead');
 
     Route::namespace('Admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -40,6 +38,10 @@ Route::middleware(['role-play'])->group(function () {
         Route::resource('areas', 'AreaController');
         Route::resource('places', 'PlaceController');
     });
+
+    Route::get('{slug}', 'LocationsController@area')->name('area');
+    Route::get('{areaSlug}/{locationSlug}', 'LocationsController@location')->name('location');
+    Route::get('{areaSlug}/{locationSlug}/{placeSlug}', 'LocationsController@locationPlace')->name('place');
 });
 
 Route::post('/ckfinder/upload/image', 'HelperController@uploadCkfinderImage');
