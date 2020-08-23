@@ -54,7 +54,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getAllGameMasters()
     {
-        return User::whereHas('roles', function (Builder $query) {
+        return User::whereHas('roles', function ($query) {
             $query->where('name', Role::GAME_MASTER);
         })->get();
     }
