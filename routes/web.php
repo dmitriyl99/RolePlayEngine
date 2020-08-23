@@ -39,6 +39,7 @@ Route::middleware(['role-play'])->group(function () {
         Route::resource('places', 'PlaceController');
     });
 
+    Route::post('post', 'RpgController@createPost')->name('post.create');
     Route::get('{slug}', 'LocationsController@area')->name('area');
     Route::get('{areaSlug}/{locationSlug}', 'LocationsController@location')->name('location');
     Route::get('{areaSlug}/{locationSlug}/{placeSlug}', 'LocationsController@locationPlace')->name('place');
