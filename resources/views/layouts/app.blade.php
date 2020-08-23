@@ -62,7 +62,7 @@
             <div class="content-header-section">
                 <ul class="nav-main-header">
                     @foreach($areas as $area)
-                        <li><a href="/{{ $area->slug }}">{{ $area->name }}</a></li>
+                        <li><a @if (request()->is($area->slug . '*')) class="active" @endif href="{{ route('area', $area->slug) }}">{{ $area->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
