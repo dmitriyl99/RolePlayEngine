@@ -42,7 +42,10 @@ class PlaceRepository implements PlaceRepositoryInterface
      */
     public function update($place_id, $place_data)
     {
-        return Place::find($place_id)->update($place_data);
+        /** @var Place $place */
+        $place = Place::find($place_id)->update($place_data);
+        $place->saveImage(request()->file('image'));
+        return $place;
     }
 
     /**
@@ -53,5 +56,12 @@ class PlaceRepository implements PlaceRepositoryInterface
     public function delete($place_id)
     {
         Place::destroy($place_id);
+    }
+
+    public function create($placeData)
+    {
+        $place = Place::create($placeData);
+        $place->saveImage(request()->file('image'));
+        return $place;
     }
 }

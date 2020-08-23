@@ -42,4 +42,12 @@ interface PlaceRepositoryInterface
      * @param $place_id int
     */
     public function delete($place_id);
+
+    /**
+     * Create a place
+     *
+     * @param $placeData
+     * @return Place
+     */
+    public function create($placeData);
 }
