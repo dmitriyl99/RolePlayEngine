@@ -5,15 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Location extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasSlug;
     /**
      * @var array
      */
     protected $fillable = [
-        'name', 'slug'
+        'name', 'slug', 'area_id'
     ];
 
     /**
@@ -41,5 +42,12 @@ class Location extends Model
     public function addPlace($place_data)
     {
         return $this->places()->create($place_data);
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }
