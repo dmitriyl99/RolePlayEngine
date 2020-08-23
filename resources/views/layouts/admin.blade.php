@@ -42,7 +42,7 @@
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/pulse.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-@yield('css')
+    @yield('styles')
 <!-- END Stylesheets -->
 
     <title>@yield('title') | {{ config('app.name') }}</title>
