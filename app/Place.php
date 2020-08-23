@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
@@ -9,7 +10,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Place extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, HasImage;
     /**
      * @var array
     */
@@ -42,5 +43,15 @@ class Place extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function getUploadDirectory(): string
+    {
+        return 'images/';
+    }
+
+    public function getImageAttributeName(): string
+    {
+        return 'img_url';
     }
 }
