@@ -64,9 +64,8 @@ class NewProfile extends Notification
     {
         return [
             'user_nickname' => $this->newProfile->hero->user->nickname,
-            'heroname' => $this->newProfile->hero->name,
-            'hero_nickname' => $this->newProfile->hero->nickname,
-            'url' => route('profile', $this->newProfile->id)
+            'heroname' => $this->newProfile->hero->getName(),
+            'url' => route('profiles', $this->newProfile->id)
         ];
     }
 }

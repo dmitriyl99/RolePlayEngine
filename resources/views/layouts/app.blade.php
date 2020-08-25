@@ -161,7 +161,16 @@
                                         <li>
                                             @if (isset($notification->toArray()['data']['url']))
                                                 <a href="{{ $notification->toArray()['data']['url'] }}"
-                                                   class="media mb-15">
+                                                   class="media mb-15 text-body-color-dark">
+                                                    @if ($notification->type == 'App\\Notifications\\NewProfile')
+                                                        <div class="ml-5 mr-15">
+                                                            <i class="fa fa-fw fa-info text-info"></i>
+                                                        </div>
+                                                        <div class="media-body pr-10">
+                                                            <p class="mb-0"> Пользователь <span class="font-weight-bold">{{ $notification->toArray()['data']['user_nikcname'] }}</span> создал анкету на персонажа <span class="font-weight-bold">{{ $notification->toArray()['data']['heroname'] }}</span>. Проверьте её!
+                                                            </p>
+                                                        </div>
+                                                    @endif
                                                 </a>
                                             @elseif ($notification->type == 'App\\Notifications\\ProfileConfirmed')
                                                 <a href="#" class="media mb-15 text-body-color-dark">
