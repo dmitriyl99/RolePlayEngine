@@ -31,7 +31,7 @@
         </div>
     </div>
     <section class="place-posts">
-        @foreach($place->posts as $post)
+        @foreach($posts as $post)
             <article class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
                 <div class="block-content bg-primary-dark">
                     <div class="row pb-50">
@@ -59,6 +59,9 @@
             </article>
         @endforeach
     </section>
+    <div class="d-flex justify-content-end">
+        {{ $posts->links() }}
+    </div>
     <section class="make-post">
         <form action="{{ route('post.create') }}" method="post">
             @csrf

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Place;
 use App\Repositories\Locations\AreaRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -105,14 +106,17 @@ class LocationsController extends Controller
         $location = $area->locations()->where('slug', $locationSlug)->first();
         if ($location == null)
             abort(404);
+        /** @var Place $place */
         $place = $location->places()->where('slug', $placeSlug)->first();
         if ($place == null)
             abort(404);
+        $posts = $place->posts()->paginate(10);
 
         $data = [
             'area' => $area,
             'location' => $location,
-            'place' => $place
+            'place' => $place,
+            'posts' => $posts
         ];
 
         return view('locations.place', $data);

@@ -60,3 +60,15 @@ button.js-cookie-consent-agree {
 .nav-main a, .nav-main a>i {
     color: #fff;
 }
+
+.page-link {
+    color: #fff;
+    background-color: #373737;
+    border-color: #373737;
+}
+
+.page-item.disabled .page-link {
+    background-color: #373737;
+    border-color: #373737;
+    color: #e3e3e3;
+}
