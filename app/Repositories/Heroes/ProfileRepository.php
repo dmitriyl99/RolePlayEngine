@@ -45,11 +45,13 @@ class ProfileRepository implements ProfileRepositoryInterface
      * Confirm the profile
      *
      * @param int $profile_id
-     * @return Profile
+     * @return Profile|false
      */
     public function confirmProfile($profile_id)
     {
-        $profile = Profile::find($profile_id);
+        $profile = $this->getProfileById($profile_id);
+        if ($profile->corrections()->exists())
+            return false;
         $profile->confirmed = true;
         $profile->save();
         return $profile;

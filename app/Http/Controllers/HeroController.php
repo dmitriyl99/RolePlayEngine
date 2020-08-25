@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Notifications\NewProfile;
 use App\Notifications\ProfileConfirmed;
 use App\Notifications\NewProfileCorrection;
+use App\Notifications\ProfileCorrectionCorrected;
+use App\ProfileCorrection;
 use App\Repositories\Heroes\HeroRepositoryInterface;
 use App\Repositories\Heroes\PdaRepositoryInterface;
 use App\Repositories\Heroes\ProfileRepositoryInterface;
 use App\Repositories\Rpg\QuestRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
@@ -67,6 +70,7 @@ class HeroController extends Controller
                                 QuestRepositoryInterface $questRepository,
                                 UserRepositoryInterface $userRepository)
     {
+        $this->middleware(['auth']);
         $this->profileRepository = $profileRepository;
         $this->pdaRepository = $pdaRepository;
         $this->heroRepository = $heroRepository;
@@ -267,13 +271,15 @@ class HeroController extends Controller
      * Confirm the profile for user
      *
      * @param int $profileId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
     */
     public function confirmProfile(int $profileId)
     {
         $user = auth()->user();
         $user->authorizeRole('game_master');
         $profile = $this->profileRepository->confirmProfile($profileId);
+        if (!$profile)
+            return redirect()->back()->with('warning', 'У этой анкеты ещё остались неисправленные замечания');
         $ownerUser = $profile->hero->user;
         $ownerUser->addRole('player');
         $ownerUser->notify(new ProfileConfirmed($profile));
@@ -287,7 +293,7 @@ class HeroController extends Controller
         $user = auth()->user();
         $user->authorizeRole('game_master');
         $request->validate([
-            'content' => 'required|max:1000'
+            'content' => 'required|max:50000'
         ]);
         $profile = $this->profileRepository->getProfileById($profileId);
         $profileCorrection = $profile->corrections()->create([
@@ -295,5 +301,18 @@ class HeroController extends Controller
             'user_id' => $user->id
         ]);
         $profileCorrection->profile->hero->user->notify(new NewProfileCorrection($profileCorrection));
+        return redirect()->back()->with('success', 'Замечаение на исправление анкеты остановлено!');
+    }
+
+    public function correctProfileCorrection(int $id)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        /** @var ProfileCorrection $profileCorrection */
+        $profileCorrection = ProfileCorrection::with('profile.hero.user')->findOrFail($id);
+        abort_if($profileCorrection->profile->hero->user->id != $user->id, 401);
+        $profileCorrection->markAsCorrected();
+        $profileCorrection->owner->notify(new ProfileCorrectionCorrected($profileCorrection));
+        return redirect()->back()->with('success', 'Замечание помечено как исправленное');
     }
 }

@@ -30,6 +30,8 @@ Route::middleware(['role-play'])->group(function () {
     Route::get('/profiles/{id}', 'InfoController@showProfile')->name('profiles.show');
 
     Route::post('/profiles/{profileId}/confirm', 'HeroController@confirmProfile')->name('profiles.confirm');
+    Route::post('/profiles/{profileId}/correction', 'HeroController@makeProfileCorrection')->name('profiles.correction');
+    Route::post('/profiles/correction/{id}/mark-as-correct', 'HeroController@correctProfileCorrection')->name('profiles.correction.correct');
 
     Route::get('/notifications/markAsRead', 'NotificationsController@markAsRead');
 

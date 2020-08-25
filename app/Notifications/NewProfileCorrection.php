@@ -63,7 +63,7 @@ class NewProfileCorrection extends Notification
         return [
             'game_master' => $this->newProfileCorrection->owner->nickname,
             'hero_name' => $this->newProfileCorrection->profile->hero->getName(),
-            'url' => route('profile', $this->newProfileCorrection->profile->id)
+            'url' => route('profiles.show', $this->newProfileCorrection->profile->id)
         ];
     }
 }
