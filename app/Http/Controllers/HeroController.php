@@ -115,7 +115,7 @@ class HeroController extends Controller
         Notification::send($gameMasters, new NewProfile($newProfile));
         $heroName = $newHero->getName();
 
-        return redirect('profile')->with('success', "Заявка на персонажа $heroName отправлена!");
+        return redirect()->route('profile')->with('success', "Заявка на персонажа $heroName отправлена!");
     }
 
     /**
