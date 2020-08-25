@@ -167,7 +167,7 @@
                                                             <i class="fa fa-fw fa-info text-info"></i>
                                                         </div>
                                                         <div class="media-body pr-10">
-                                                            <p class="mb-0"> Пользователь <span class="font-weight-bold">{{ $notification->toArray()['data']['user_nikcname'] }}</span> создал анкету на персонажа <span class="font-weight-bold">{{ $notification->toArray()['data']['heroname'] }}</span>. Проверьте её!
+                                                            <p class="mb-0"> Пользователь <span class="font-weight-bold">{{ $notification->toArray()['data']['user_nickname'] }}</span> создал анкету на персонажа <span class="font-weight-bold">{{ $notification->toArray()['data']['heroname'] }}</span>. Проверьте её!
                                                             </p>
                                                         </div>
                                                     @endif
