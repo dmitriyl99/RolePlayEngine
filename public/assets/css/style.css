@@ -52,3 +52,11 @@ button.js-cookie-consent-agree {
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     font-weight: 600;
 }
+
+#sidebar {
+    background-color: #383838;
+}
+
+.nav-main a, .nav-main a>i {
+    color: #fff;
+}
