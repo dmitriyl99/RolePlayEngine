@@ -224,101 +224,27 @@
                         </div>
                         <div class="block-content bg-primary-dark">
                             <ul class="list-group list-group-flush mb-20">
+                                @foreach($lastPosts as $lastPost)
                                 <li class="list-group-item bg-primary-dark clearfix">
                                     <div class="float-left">
                                         <div class="d-flex">
                                             <i class="fa fa-comments-o fa-2x"></i>
                                             <div class="d-flex flex-column ml-10">
-                                                <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон
-                                                    - Бункер Сидоровича</a>
-                                                <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
+                                                <a href="{{ route('place', ['areaSlug' => $lastPost->area->slug, 'locationSlug' => $lastPost->location->slug, 'placeSlug' => $lastPost->place->slug]) }}#post{{ $lastPost->id }}" class="text-body-color-light font-w600 font-size-md">{{ $lastPost->location->name }}
+                                                    - {{ $lastPost->place->name }}</a>
+                                                <a href="{{ route('location', ['areaSlug' => $lastPost->area->slug, 'locationSlug' => $lastPost->location->slug]) }}" class="text-body-color-light font-size-sm">{{ $lastPost->location->name }}</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="float-right">
                                         <div class="d-flex flex-column">
                                             <a href="#"
-                                               class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
-                                            <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
+                                               class="text-body-color-light font-w600 font-size-md text-center">{{ $lastPost->hero->getName() }}</a>
+                                            <span class="font-size-sm text-body-color-light js-utc-to-local">{{ $lastPost->created_at }}</span>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item bg-primary-dark clearfix">
-                                    <div class="float-left">
-                                        <div class="d-flex">
-                                            <i class="fa fa-comments-o fa-2x"></i>
-                                            <div class="d-flex flex-column ml-10">
-                                                <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон
-                                                    - Бункер Сидоровича</a>
-                                                <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="float-right">
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                               class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
-                                            <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-primary-dark clearfix">
-                                    <div class="float-left">
-                                        <div class="d-flex">
-                                            <i class="fa fa-comments-o fa-2x"></i>
-                                            <div class="d-flex flex-column ml-10">
-                                                <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон
-                                                    - Бункер Сидоровича</a>
-                                                <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="float-right">
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                               class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
-                                            <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-primary-dark clearfix">
-                                    <div class="float-left">
-                                        <div class="d-flex">
-                                            <i class="fa fa-comments-o fa-2x"></i>
-                                            <div class="d-flex flex-column ml-10">
-                                                <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон
-                                                    - Бункер Сидоровича</a>
-                                                <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="float-right">
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                               class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
-                                            <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item bg-primary-dark clearfix">
-                                    <div class="float-left">
-                                        <div class="d-flex">
-                                            <i class="fa fa-comments-o fa-2x"></i>
-                                            <div class="d-flex flex-column ml-10">
-                                                <a href="#" class="text-body-color-light font-w600 font-size-md">Кордон
-                                                    - Бункер Сидоровича</a>
-                                                <a href="#" class=" text-body-color-light font-size-sm">Кордон</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="float-right">
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                               class="text-body-color-light font-w600 font-size-md text-center">Нулевой</a>
-                                            <span class="font-size-sm text-body-color-light"><span class="font-w600">23:08</span> | 20.12.2019</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

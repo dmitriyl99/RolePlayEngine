@@ -38,7 +38,17 @@
                             </div>
                         </td>
                         <td></td>
-                        <td>
+                        <td class="d-none d-md-table-cell text-right">
+                            @php
+                                $lastPost = $place->lastPost
+                            @endphp
+                            @if ($lastPost)
+                                <span class="font-size-sm">
+                                        от <a href="">{{ $lastPost->hero->getName() }}</a>
+                                        <br>
+                                        <em><a href="{{ route('place', ['areaSlug' => $lastPost->area->slug, 'locationSlug' => $lastPost->location->slug, 'placeSlug' => $lastPost->place->slug]) }}#post{{ $lastPost->id }}" class="js-utc-to-local text-body-color-light">{{ $lastPost->created_at }}</a></em>
+                                    </span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

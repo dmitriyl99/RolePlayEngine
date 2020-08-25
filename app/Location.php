@@ -34,6 +34,16 @@ class Location extends Model
     }
 
     /**
+     * Posts in location
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
      * Add a place to the Location
      *
      * @param $place_data array Place data
@@ -42,6 +52,11 @@ class Location extends Model
     public function addPlace($place_data)
     {
         return $this->places()->create($place_data);
+    }
+
+    public function getLastPostAttribute()
+    {
+        return $this->posts()->latest()->first();
     }
 
     public function getSlugOptions(): SlugOptions

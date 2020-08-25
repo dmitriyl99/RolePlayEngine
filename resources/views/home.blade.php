@@ -18,13 +18,6 @@
                             <a href="{{ route('profiles') }}" class="font-size-h5 font-w600">Данные</a>
                             <div class="text-muted my-5">Здесь хранятся данные как о тех, кто уже давно пересёк Периметр, так и о тех, кто ещё только собирается испытать свою судьбу.</div>
                         </td>
-                        <td class="d-none d-md-table-cell">
-                            <span class="font-size-sm">
-                                от <a href="">Нулевой</a>
-                                <br>
-                                <em><span class="font-w600">23:08</span> | 20.12.2019</em>
-                            </span>
-                        </td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width: 65px">
@@ -33,13 +26,6 @@
                         <td>
                             <a href="#" class="font-size-h5 font-w600">Живые сталкеры</a>
                             <div class="text-muted my-5">Список сталкеров, которым до сих пор счастливится коптить небо Зоны</div>
-                        </td>
-                        <td class="d-none d-md-table-cell">
-                            <span class="font-size-sm">
-                                от <a href="">Нулевой</a>
-                                <br>
-                                <em><span class="font-w600">23:08</span> | 20.12.2019</em>
-                            </span>
                         </td>
                     </tr>
                 </tbody>
@@ -102,11 +88,16 @@
                                     </div>
                                 </td>
                                 <td class="d-none d-md-table-cell text-right">
+                                    @php
+                                    $lastPost = $location->lastPost
+                                    @endphp
+                                    @if ($lastPost)
                                     <span class="font-size-sm">
-                                        от <a href="">Нулевой</a>
+                                        от <a href="">{{ $lastPost->hero->getName() }}</a>
                                         <br>
-                                        <em><span class="font-w600">23:08</span> | 20.12.2019</em>
+                                        <em><a href="{{ route('place', ['areaSlug' => $lastPost->area->slug, 'locationSlug' => $lastPost->location->slug, 'placeSlug' => $lastPost->place->slug]) }}#post{{ $lastPost->id }}" class="js-utc-to-local text-body-color-light">{{ $lastPost->created_at }}</a></em>
                                     </span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

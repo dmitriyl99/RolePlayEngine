@@ -20,7 +20,7 @@ class RolePlayMiddleware
     public function handle($request, Closure $next)
     {
         View::share('areas', Area::all());
-        View::share('fiveLastPosts', Post::orderBy('created_at', 'desc')->limit(5)->get()->toArray());
+        View::share('lastPosts', Post::orderBy('created_at', 'desc')->limit(5)->get());
         View::share('lastUsers', User::orderBy('created_at', 'desc')->limit(5)->get());
         return $next($request);
     }

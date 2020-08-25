@@ -43,6 +43,11 @@ class Place extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function getLastPostAttribute()
+    {
+        return $this->posts()->latest()->first();
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

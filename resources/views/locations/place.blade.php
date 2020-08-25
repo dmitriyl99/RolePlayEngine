@@ -32,7 +32,7 @@
     </div>
     <section class="place-posts">
         @foreach($posts as $post)
-            <article class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
+            <article id="post{{ $post->id }}" class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
                 <div class="block-content bg-primary-dark">
                     <div class="row pb-50">
                         <div class="col-md-2">
