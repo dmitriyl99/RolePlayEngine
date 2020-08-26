@@ -32,9 +32,10 @@
     <form action="{{ route('post.update', $post->id) }}" method="post">
         @csrf
         @method('put')
+        <input type="hidden" name="redirect_url" value="{{ $redirect_url }}">
         <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="block-header">
-                <h3 class="block-title">Редактировать пост</h3>
+                <h3 class="block-title text-body-color-light">Редактировать пост</h3>
             </div>
             <div class="block-content bg-primary-dark">
                 <div class="form-group @error('content') is-invalid @enderror">
