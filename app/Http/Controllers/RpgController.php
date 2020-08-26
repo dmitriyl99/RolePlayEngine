@@ -122,7 +122,7 @@ class RpgController extends Controller
             'content' => 'required|max:50000'
         ]);
         $this->postRepository->update($id, ['content' => $request->get('content')]);
-        return redirect($request->get('redirect_url'));
+        return redirect($request->get('redirect_url'))->with('success', 'Пост отредактирован');
     }
 
     /**
