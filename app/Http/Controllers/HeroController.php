@@ -146,17 +146,15 @@ class HeroController extends Controller
      *
      * @param Request $request
      * @param int $heroId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
     */
     public function updateHero(Request $request, int $heroId)
     {
         $hero = $this->heroRepository->get($heroId);
         abort_if($hero->user->id != auth()->user()->id, 401);
-        $heroName = ($hero->nickname) ? $hero->nickaname : $hero->name;
+        $heroName = $hero->getName();
         if ($hero->profile->confirmed)
-        {
             return redirect()->back()->with('warning', "Анкета персонажа $heroName уже принята.");
-        }
         $request->validate([
             'name' => 'required|max:255',
             'nickname' => 'max:255',
@@ -175,7 +173,7 @@ class HeroController extends Controller
         ];
         $this->profileRepository->update($hero->profile->id, $profileData);
 
-        return redirect()->route('user')->with('success', "Анкета персонажа $heroName обновлена");
+        return redirect()->route('profiles.show', $hero->profile->id)->with('success', "Анкета персонажа $heroName обновлена");
     }
 
     /**
