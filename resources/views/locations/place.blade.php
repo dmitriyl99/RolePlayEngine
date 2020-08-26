@@ -52,7 +52,7 @@
                                 @auth
                                     <div>
                                         @if (auth()->user()->hasRole(App\Role::ADMIN) || auth()->user()->hasRole(App\Role::GAME_MASTER) || auth()->user()->id == $post->user_id)
-                                            <a href="{{ route('post.edit', $post->id) }}?redirect_url=/{{ request()->getRequestUri() }}#post{{ $post->id }}" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Редактировать пост"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('post.edit', $post->id) }}?redirect_url={{ request()->getRequestUri() }}#post{{ $post->id }}" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Редактировать пост"><i class="fa fa-edit"></i></a>
                                         @endif
                                         @if (auth()->user()->hasRole(App\Role::ADMIN))
                                                 <form action="{{ route('post.delete', $post->id) }}" method="post">
