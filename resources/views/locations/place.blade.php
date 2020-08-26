@@ -50,7 +50,7 @@
                             <div class="post-date text-body-color-light d-flex justify-content-between">
                                 <span class="js-utc-to-local">{{ $post->created_at }}</span>
                                 @auth
-                                    <div>
+                                    <div class="d-flex align-items-center">
                                         @if (auth()->user()->hasRole(App\Role::ADMIN) || auth()->user()->hasRole(App\Role::GAME_MASTER) || auth()->user()->id == $post->user_id)
                                             <a href="{{ route('post.edit', $post->id) }}?redirect_url={{ request()->getRequestUri() }}#post{{ $post->id }}" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Редактировать пост"><i class="fa fa-edit"></i></a>
                                         @endif
@@ -58,7 +58,7 @@
                                                 <form action="{{ route('post.delete', $post->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот пост?')" class="btn btm-sm btn-alt-danger" data-toggle="tooltip" title="Удалить пост"><i class="fa fa-trash"></i></button>
+                                                    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот пост?')" class="btn btn-sm btn-alt-danger ml-10" data-toggle="tooltip" title="Удалить пост"><i class="fa fa-trash"></i></button>
                                                 </form>
                                         @endif
                                     </div>
