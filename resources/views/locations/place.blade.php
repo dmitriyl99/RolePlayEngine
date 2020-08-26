@@ -47,8 +47,22 @@
                             </div>
                         </div>
                         <div class="col-md-10">
-                            <div class="post-date text-body-color-light">
+                            <div class="post-date text-body-color-light d-flex justify-content-between">
                                 <span class="js-utc-to-local">{{ $post->created_at }}</span>
+                                @auth
+                                    <div>
+                                        @if (auth()->user()->hasRole(App\Role::ADMIN) || auth()->user()->hasRole(App\Role::GAME_MASTER) || auth()->user()->id == $post->user_id)
+                                            <a href="{{ route('post.edit') }}" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Редактировать пост"><i class="fa fa-edit"></i></a>
+                                        @endif
+                                        @if (auth()->user()->hasRole(App\Role::ADMIN))
+                                                <form action="{{ route('post.delete') }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот пост?')" class="btn btm-sm btn-alt-danger" data-toggle="tooltip" title="Удалить пост"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                        @endif
+                                    </div>
+                                @endauth
                             </div>
                             <div class="post-content">
                                 <p>{!! $post->content !!}</p>

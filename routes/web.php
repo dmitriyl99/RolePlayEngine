@@ -48,6 +48,9 @@ Route::middleware(['role-play'])->group(function () {
     });
 
     Route::post('post', 'RpgController@createPost')->name('post.create');
+    Route::get('post/{postId}', 'RpgController@editPost')->name('post.edit');
+    Route::put('post/{postId}', 'RpgController@updatePost')->name('post.update');
+    Route::delete('post/{postId}', 'RpgController@deletePost')->name('post.delete');
     Route::get('{slug}', 'LocationsController@area')->name('area');
     Route::get('{areaSlug}/{locationSlug}', 'LocationsController@location')->name('location');
     Route::get('{areaSlug}/{locationSlug}/{placeSlug}', 'LocationsController@locationPlace')->name('place');

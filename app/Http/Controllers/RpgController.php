@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Locations\AreaRepositoryInterface;
 use App\Repositories\Rpg\PostRepositoryInterface;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class RpgController extends Controller
@@ -82,21 +84,59 @@ class RpgController extends Controller
 
     /**
      * Edit a post
+     * @param Request $request
      * @param int $postId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function editPost(int $postId)
+    public function editPost(Request $request, int $postId)
     {
         $post = $this->postRepository->getById($postId);
         abort_if($post == null, 404);
         $user = auth()->user();
-        if ($post->user()->id !== $user->id) {
+        if ($post->user->id !== $user->id) {
             $user->authorizeRole(['game_master', 'admin']);
         }
         $data = [
-            'post' => $post
+            'post' => $post,
+            'redirect_url' => $request->query('redirect_url')
         ];
 
-        return view('rpg/edit_post', $data);
+        return view('rpg.posts.edit', $data);
+    }
+
+    /**
+     *
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function updatePost(Request $request, int $id)
+    {
+        $post = $this->postRepository->getById($id);
+        $user = auth()->user();
+        if ($post->user->id !== $user->id) {
+            $user->authorizeRole(['game_master', 'admin']);
+        }
+        $request->validate([
+            'content' => 'required|max:50000'
+        ]);
+        $this->postRepository->update($id, ['content' => $request->get('content')]);
+        return redirect($request->get('redirect_to'));
+    }
+
+    /**
+     * Delete a post
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deletePost(int $id)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        abort_if(!$user->hasRole(Role::ADMIN), 401);
+        $this->postRepository->delete($id);
+        return redirect()->back()->with('success', 'Пост удалён');
     }
 }
