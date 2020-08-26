@@ -21,4 +21,9 @@ class Pda extends Model
     {
         return $this->belongsTo(Hero::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
