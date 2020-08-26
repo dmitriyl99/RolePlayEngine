@@ -55,8 +55,3 @@
         </div>
     </form>
 @endsection
-
-@section('js')
-    <script src="{{ asset('assets/js/plugins/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/js/ckeditorInitialScript.js') }}"></script>
-@endsection
