@@ -72,3 +72,28 @@ button.js-cookie-consent-agree {
     border-color: #373737;
     color: #e3e3e3;
 }
+
+.content-heading {
+    color: #fff;
+}
+
+.form-group input.form-control {
+    color: #fff;
+}
+
+div.spoiler div.spoiler-title div.show-icon {
+    background: url(/assets/js/plugins/ckeditor/plugins/spoiler/images/plus.png);
+}
+
+div.spoiler div.spoiler-title div.hide-icon {
+    background: url(/assets/js/plugins/ckeditor/plugins/spoiler/images/minus.png);
+}
+
+div.spoiler div.spoiler-title {
+    background: #333333;
+    color: #fff;
+}
+
+div.spoiler div.spoiler-content {
+    background: #373737;
+}
