@@ -27,6 +27,8 @@ Route::middleware(['role-play'])->group(function () {
     Route::put('/hero/{heroId}/edit', 'HeroController@updateHero')->name('hero.update');
     Route::get('/hero/{heroId}/pda/create', 'HeroController@createPda')->name('hero.pda.create');
     Route::post('/hero/{heroId}/pda/create', 'HeroController@storePda')->name('hero.pda.store');
+    Route::get('/hero/{heroId}/pda', 'HeroController@editPda')->name('hero.pda.show');
+    Route::put('/hero/{heroId}/pda', 'HeroController@updatePda')->name('hero.pda.update');
     Route::get('/user/{user}', 'UserController@show')->name('profile.show');
 
     // Info routes

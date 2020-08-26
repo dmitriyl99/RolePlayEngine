@@ -42,7 +42,7 @@
                                 @endif
                             </a>
                         @elseif ($notification->type == 'App\\Notifications\\ProfileConfirmed')
-                            <a href="#" class="media mb-15 text-body-color-dark">
+                            <a href="{{ route('hero.pda.create', $notification->toArray()['data']['profile']['hero_id']) }}" class="media mb-15 text-body-color-dark">
                                 <div class="ml-5 mr-15">
                                     <i class="fa fa-fw fa-check text-success"></i>
                                 </div>

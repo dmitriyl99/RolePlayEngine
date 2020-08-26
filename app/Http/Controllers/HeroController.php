@@ -217,7 +217,7 @@ class HeroController extends Controller
             'user_id' => auth()->user()->id
         ];
         $hero->pda()->create($data);
-        return redirect()->route('profiles.show', $hero->profile->id)->with('success', "КПК для персонажа $heroName создан!");
+        return redirect()->route('hero.pda.show', $hero->id)->with('success', "КПК для персонажа $heroName создан!");
     }
 
     /**
@@ -256,14 +256,14 @@ class HeroController extends Controller
         if (!$hero->pda)
             return redirect()->back()->with('warning', "У персонажа $heroName ещё нет КПК");
         $request->validate([
-            'content' => 'required|max:255'
+            'content' => 'required|max:50000'
         ]);
         $pdaContent = $request->get('content');
         $pdaData = [
             'content' => $pdaContent
         ];
         $hero->pda()->update($pdaData);
-        return redirect()->route('user')->with('success', "КПК персонажа $heroName обновлен!");
+        return redirect()->back()->with('success', "КПК персонажа $heroName обновлен!");
     }
 
     /**

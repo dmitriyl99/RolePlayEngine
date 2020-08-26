@@ -31,7 +31,7 @@
                     @endif
                 @endauth
                 @if ($profile->hero->pda)
-                    <a href="#" class="btn btn-alt-primary btn-rounded"><i class="si si-plus"></i> Открыть КПК</a>
+                    <a href="{{ route('hero.pda.show', $profile->hero->id) }}" class="btn btn-alt-primary btn-rounded"><i class="si si-plus"></i> Открыть КПК</a>
                 @endif
             </div>
         </div>
