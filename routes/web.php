@@ -21,10 +21,12 @@ Route::middleware(['role-play'])->group(function () {
 
     // Profile routes
     Route::get('/user', 'UserController@index')->name('profile');
-    Route::get('/profile/create', 'HeroController@createhero')->name('hero.create');
-    Route::post('/profile/create', 'HeroController@storeHero');
-    Route::get('/profile/{heroId}/edit', 'HeroController@editHero')->name('hero.edit');
-    Route::put('/profile/{heroId}/edit', 'HeroController@updateHero')->name('hero.update');
+    Route::get('/hero/create', 'HeroController@createhero')->name('hero.create');
+    Route::post('/hero/create', 'HeroController@storeHero');
+    Route::get('/hero/{heroId}/edit', 'HeroController@editHero')->name('hero.edit');
+    Route::put('/hero/{heroId}/edit', 'HeroController@updateHero')->name('hero.update');
+    Route::get('/hero/{heroId}/pda/create', 'HeroController@createPda')->name('hero.pda.create');
+    Route::post('/hero/{heroId}/pda/create', 'HeroController@storePda')->name('hero.pda.store');
     Route::get('/user/{user}', 'UserController@show')->name('profile.show');
 
     // Info routes

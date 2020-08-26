@@ -213,10 +213,11 @@ class HeroController extends Controller
         ]);
         $content = $request->get('content');
         $data = [
-            'content' => $content
+            'content' => $content,
+            'user_id' => auth()->user()->id
         ];
         $hero->pda()->create($data);
-        return redirect()->route('user')->with('success', "КПК для персонажа $heroName создан!");
+        return redirect()->route('profiles.show', $hero->profile->id)->with('success', "КПК для персонажа $heroName создан!");
     }
 
     /**

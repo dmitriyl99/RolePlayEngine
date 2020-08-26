@@ -5,25 +5,35 @@
 @endsection
 
 @section('content')
-    <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
+    <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn"
+         data-toggle="appear">
         <div class="block-header">
-            <h3 class="block-title text-body-color-light">Анкета персонажа <span class="text-primary font-w700">{{ $profile->hero->getName() }}</span> <small class="text-muted">(владелец:
-                    <a href="{{ route('profile.show', $profile->hero->user->id) }}">{{ $profile->hero->user->nickname }}</a>)</small></h3>
-            @auth
-                @if (auth()->user()->hasRole(App\Role::GAME_MASTER) && !$profile->confirmed)
-                    <div class="block-options">
+            <h3 class="block-title text-body-color-light">Анкета персонажа <span
+                    class="text-primary font-w700">{{ $profile->hero->getName() }}</span> <small class="text-muted">(владелец:
+                    <a href="{{ route('profile.show', $profile->hero->user->id) }}">{{ $profile->hero->user->nickname }}</a>)</small>
+            </h3>
+            <div class="block-options">
+                @auth
+                    @if (auth()->user()->hasRole(App\Role::GAME_MASTER) && !$profile->confirmed)
                         <form action="{{ route('profiles.confirm', $profile->id) }}" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-alt-success btn-rounded" style="border: none;"><i class="fa fa-check mr-10"></i>Принять</button>
+                            <button type="submit" class="btn btn-alt-success btn-rounded" style="border: none;"><i
+                                    class="fa fa-check mr-10"></i>Принять
+                            </button>
                         </form>
-                    </div>
+                    @endif
+                    @if (auth()->user()->id == $profile->hero->user_id && !$profile->confirmed)
+                        <a href="{{ route('hero.edit', $profile->hero_id) }}" class="btn btn-alt-warning btn-rounded"><i
+                                class="fa fa-edit"></i> Редактировать</a>
+                    @endif
+                    @if (!$profile->hero->pda && auth()->user()->id == $profile->hero->user_id && $profile->confirmed)
+                        <a href="{{ route('hero.pda.create', $profile->hero_id) }}" class="btn btn-alt-primary btn-rounded"><i class="si si-plus"></i> Создать КПК</a>
+                    @endif
+                @endauth
+                @if ($profile->hero->pda)
+                    <a href="#" class="btn btn-alt-primary btn-rounded"><i class="si si-plus"></i> Открыть КПК</a>
                 @endif
-                @if (auth()->user()->id == $profile->hero->user_id)
-                    <div class="block-options">
-                        <a href="{{ route('hero.edit', $profile->hero_id) }}" class="btn btn-alt-warning btn-rounded"><i class="fa fa-edit"></i> Редактировать</a>
-                    </div>
-                @endif
-            @endauth
+            </div>
         </div>
         <div class="block-content bg-primary-dark profile-content pb-20">
             {!! $profile->content !!}
@@ -33,16 +43,22 @@
     <h2 class="content-heading text-body-color-light">Замечания</h2>
     @if ($profile->corrections()->exists())
         @foreach($profile->corrections as $correction)
-            <article id="correction{{ $correction->id }}" class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
+            <article id="correction{{ $correction->id }}"
+                     class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn"
+                     data-toggle="appear">
                 <div class="block-content bg-primary-dark">
                     <div class="row pb-50">
                         <div class="col-md-2">
                             <div class="d-flex flex-column justify-content-center align-items-center post-hero-info">
                                 <div class="post-hero-name">
-                                    <div class="text-primary text-center font-weight-bold"><a href="{{ route('profile.show', $correction->owner->slug) }}" class="link-effect">{{ $correction->owner->nickname }}</a></div>
+                                    <div class="text-primary text-center font-weight-bold"><a
+                                            href="{{ route('profile.show', $correction->owner->slug) }}"
+                                            class="link-effect">{{ $correction->owner->nickname }}</a></div>
                                 </div>
                                 <div class="post-hero-image mt-10">
-                                    <img src="@if ($correction->owner->hasImage()) {{ $correction->owner->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" class="img-avatar img-avatar128" alt="{{ $correction->owner->nickname }}">
+                                    <img
+                                        src="@if ($correction->owner->hasImage()) {{ $correction->owner->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif"
+                                        class="img-avatar img-avatar128" alt="{{ $correction->owner->nickname }}">
                                 </div>
                             </div>
                         </div>
@@ -57,9 +73,12 @@
                                     </div>
                                     @auth
                                         @if ($profile->hero->user_id == auth()->user()->id && !$correction->corrected)
-                                            <form action="{{ route('profiles.correction.correct', $correction->id) }}" method="post">
+                                            <form action="{{ route('profiles.correction.correct', $correction->id) }}"
+                                                  method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-alt-success"><i class="si si-check"></i> Исправлено</button>
+                                                <button type="submit" class="btn btn-sm btn-alt-success"><i
+                                                        class="si si-check"></i> Исправлено
+                                                </button>
                                             </form>
                                         @endif
                                     @endauth
@@ -86,7 +105,8 @@
                 @csrf
                 <textarea name="content" id="js-ckeditor"></textarea>
                 <div class="d-flex justify-content-end mt-20 mb-20">
-                    <button type="submit" class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Сохранить</button>
+                    <button type="submit" class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Сохранить
+                    </button>
                 </div>
             </form>
         @endif

@@ -14,7 +14,7 @@ class Pda extends Model
      * @var array
      */
     protected $fillable = [
-        'content'
+        'content', 'user_id'
     ];
 
     public function hero()
