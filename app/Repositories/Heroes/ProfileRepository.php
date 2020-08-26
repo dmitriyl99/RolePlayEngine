@@ -50,7 +50,7 @@ class ProfileRepository implements ProfileRepositoryInterface
     public function confirmProfile($profile_id)
     {
         $profile = $this->getProfileById($profile_id);
-        if ($profile->corrections()->exists())
+        if ($profile->corrections()->where('corrected', false)->exists())
             return false;
         $profile->confirmed = true;
         $profile->save();
