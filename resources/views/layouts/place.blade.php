@@ -41,6 +41,7 @@
     <!-- Codebase framework -->
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css') }}">
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/pulse.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/ckeditor/plugins/include/spoiler.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 @yield('css')
 <!-- END Stylesheets -->
@@ -188,6 +189,9 @@
 <script src="{{ asset('assets/js/core/jquery.scrollLock.min.js') }}"></script>
 <script src="{{ asset('assets/js/core/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('assets/js/codebase.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/ckeditor/plugins/include/spoiler.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/js/ckeditorInitialScript.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
 @yield('js')
 
