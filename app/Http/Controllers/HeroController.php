@@ -230,7 +230,6 @@ class HeroController extends Controller
     public function editPda(int $heroId)
     {
         $hero = $this->heroRepository->get($heroId);
-        abort_if($hero->user->id != auth()->user()->id, 401);
         $heroName = $hero->getName();
         if (!$hero->pda)
             return redirect()->back()->with('warning', "У персонажа $heroName ещё нет КПК");
