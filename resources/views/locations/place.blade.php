@@ -3,15 +3,22 @@
 @section('title', $place->name)
 
 @section('content')
-    <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
+    <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn"
+         data-toggle="appear">
         <div class="block-header">
             @if (auth()->user() and auth()->user()->hasRole('admin'))
                 <h3 class="block-title text-body-color-light font-w700">{{ $place->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('admin.areas.create') }}" class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i class="si si-plus"></i> Создать зону</a>
+                    <a href="{{ route('admin.areas.create') }}"
+                       class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i
+                            class="si si-plus"></i> Создать зону</a>
                     @if ($areas->count() > 0)
-                        <a href="{{ route('admin.locations.create') }}" class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i class="si si-plus"></i> Создать локацию</a>
-                        <a href="{{ route('admin.places.create') }}" class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i class="si si-plus"></i> Создать место</a>
+                        <a href="{{ route('admin.locations.create') }}"
+                           class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i
+                                class="si si-plus"></i> Создать локацию</a>
+                        <a href="{{ route('admin.places.create') }}"
+                           class="btn btn-alt-primary btn-rounded text-body-color-light bg-transparent"><i
+                                class="si si-plus"></i> Создать место</a>
                     @endif
                 </div>
             @else
@@ -24,7 +31,8 @@
                     <img src="{{ $place->getImage() }}" alt="{{ $place->name }}" class="img-fluid-100">
                 </div>
             @endif
-            <h3 class="content-heading @if (!$place->hasImage()) pt-0 @endif text-body-color-light text-center">@if ($place->hasImage()) Описание @else {{ $place->name }} @endif</h3>
+            <h3 class="content-heading @if (!$place->hasImage()) pt-0 @endif text-body-color-light text-center">@if ($place->hasImage())
+                    Описание @else {{ $place->name }} @endif</h3>
             <p class="place-description text-body-color-light">
                 {!! $place->description !!}
             </p>
@@ -32,17 +40,24 @@
     </div>
     <section class="place-posts">
         @foreach($posts as $post)
-            <article id="post{{ $post->id }}" class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
+            <article id="post{{ $post->id }}"
+                     class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn"
+                     data-toggle="appear">
                 <div class="block-content bg-primary-dark">
                     <div class="row pb-50">
                         <div class="col-md-2">
                             <div class="d-flex flex-column justify-content-center align-items-center post-hero-info">
                                 <div class="post-hero-name">
-                                    <div class="text-primary text-center font-weight-bold"><a href="#" class="link-effect">{{ $post->hero->getName() }}</a> <small><a
-                                                href="#" class="link-effect">({{ $post->user->nickname }})</a></small></div>
+                                    <div class="text-primary text-center font-weight-bold"><a href="#"
+                                                                                              class="link-effect">{{ $post->hero->getName() }}</a>
+                                        <small><a
+                                                href="#" class="link-effect">({{ $post->user->nickname }})</a></small>
+                                    </div>
                                 </div>
                                 <div class="post-hero-image mt-10">
-                                    <img src="@if ($post->user->hasImage()) {{ $post->user->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" class="img-avatar img-avatar128" alt="{{ $post->user->nickname }}">
+                                    <img
+                                        src="@if ($post->user->hasImage()) {{ $post->user->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif"
+                                        class="img-avatar img-avatar128" alt="{{ $post->user->nickname }}">
                                 </div>
                             </div>
                         </div>
@@ -52,14 +67,19 @@
                                 @auth
                                     <div class="d-flex align-items-center">
                                         @if (auth()->user()->hasRole(App\Role::ADMIN) || auth()->user()->hasRole(App\Role::GAME_MASTER) || auth()->user()->id == $post->user_id)
-                                            <a href="{{ route('post.edit', $post->id) }}?redirect_url={{ request()->getRequestUri() }}#post{{ $post->id }}" class="btn btn-sm btn-alt-warning" data-toggle="tooltip" title="Редактировать пост"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('post.edit', $post->id) }}?redirect_url={{ request()->getRequestUri() }}#post{{ $post->id }}"
+                                               class="btn btn-sm btn-alt-warning" data-toggle="tooltip"
+                                               title="Редактировать пост"><i class="fa fa-edit"></i></a>
                                         @endif
                                         @if (auth()->user()->hasRole(App\Role::ADMIN))
-                                                <form action="{{ route('post.delete', $post->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить этот пост?')" class="btn btn-sm btn-alt-danger ml-10" data-toggle="tooltip" title="Удалить пост"><i class="fa fa-trash"></i></button>
-                                                </form>
+                                            <form action="{{ route('post.delete', $post->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit"
+                                                        onclick="return confirm('Вы уверены, что хотите удалить этот пост?')"
+                                                        class="btn btn-sm btn-alt-danger ml-10" data-toggle="tooltip"
+                                                        title="Удалить пост"><i class="fa fa-trash"></i></button>
+                                            </form>
                                         @endif
                                     </div>
                                 @endauth
@@ -77,20 +97,24 @@
         {{ $posts->links() }}
     </div>
     <section class="make-post">
-        <form action="{{ route('post.create') }}" method="post">
-            @csrf
-            <input type="hidden" name="area_id" value="{{ $area->id }}">
-            <input type="hidden" name="location_id" value="{{ $location->id }}">
-            <input type="hidden" name="place_id" value="{{ $place->id }}">
-            <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
-                <div class="block-header">
-                    <h3 class="block-title text-body-color-light font-w700">Оставить пост</h3>
-                    <div class="block-options">
-                        <button class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Опубликовать</button>
+        @auth
+            <form action="{{ route('post.create') }}" method="post">
+                @csrf
+                <input type="hidden" name="area_id" value="{{ $area->id }}">
+                <input type="hidden" name="location_id" value="{{ $location->id }}">
+                <input type="hidden" name="place_id" value="{{ $place->id }}">
+                <div
+                    class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn"
+                    data-toggle="appear">
+                    <div class="block-header">
+                        <h3 class="block-title text-body-color-light font-w700">Оставить пост</h3>
+                        <div class="block-options">
+                            <button class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Опубликовать
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="block-content bg-primary-dark">
-                    @auth
+                    <div class="block-content bg-primary-dark">
+
                         @if (auth()->user()->hasHeroes())
                             <div class="form-group">
                                 <div class="form-material form-material-primary floating">
@@ -109,14 +133,22 @@
                                 </div>
                             </div>
                         @else
-                            <p class="text-warning text-center font-size-h5 font-weight-bold">У вас нет ни одного персонажа.</p>
+                            <p class="text-warning text-center font-size-h5 font-weight-bold">У вас нет ни одного
+                                персонажа.</p>
                             <div class="d-flex justify-content-center mb-20"><a href="{{ route('hero.create') }}"
-                                                                          class="btn btn-alt-primary"><i class="si si-plus"></i> Создать персонажа</a></div>
+                                                                                class="btn btn-alt-primary"><i
+                                        class="si si-plus"></i> Создать персонажа</a></div>
                         @endif
-                    @else
-                    @endauth
+                    </div>
                 </div>
+            </form>
+        @endauth
+        @guest
+            <p class="text-warning text-center font-size-h5 font-weight-bold">Чтобы оставлять посты, необходимо авторизоваться.</p>
+            <div class="d-flex justify-content-center mb-20">
+                <a href="{{ route('login') }}" сlass="btn btn-alt-primary"><i class="si si-user"></i> Вход</a>
+                <a href="{{ route('register') }}" class="btn btn-alt-primary ml-10"><i class="si si-key"></i> Зарегистрироваться</a>
             </div>
-        </form>
+        @endguest
     </section>
 @endsection
