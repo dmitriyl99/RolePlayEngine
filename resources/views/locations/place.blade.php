@@ -146,7 +146,7 @@
         @guest
             <p class="text-warning text-center font-size-h5 font-weight-bold">Чтобы оставлять посты, необходимо авторизоваться.</p>
             <div class="d-flex justify-content-center mb-20">
-                <a href="{{ route('login') }}" сlass="btn btn-alt-primary"><i class="si si-user"></i> Вход</a>
+                <a href="{{ route('login') }}" class="btn btn-alt-primary"><i class="si si-user"></i> Вход</a>
                 <a href="{{ route('register') }}" class="btn btn-alt-primary ml-10"><i class="si si-key"></i> Зарегистрироваться</a>
             </div>
         @endguest
