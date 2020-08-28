@@ -70,7 +70,7 @@ class HeroController extends Controller
                                 QuestRepositoryInterface $questRepository,
                                 UserRepositoryInterface $userRepository)
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->except('editPda');
         $this->profileRepository = $profileRepository;
         $this->pdaRepository = $pdaRepository;
         $this->heroRepository = $heroRepository;
