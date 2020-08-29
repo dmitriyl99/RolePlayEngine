@@ -17,7 +17,7 @@
                                     <i class="si si-user fa-2x"></i>
                                 </td>
                                 <td>
-                                    <a href="{{ route('hero.pda.show', $pda->id) }}" class="font-size-h5 font-w600">{{ $pda->hero->getName() }}</a>
+                                    <a href="{{ route('hero.pda.show', $pda->hero_id) }}" class="font-size-h5 font-w600">{{ $pda->hero->getName() }}</a>
                                 </td>
                                 <td class="d-none d-md-table-cell">
                                     <span class="font-size-sm">
