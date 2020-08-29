@@ -21,7 +21,7 @@
                                 </td>
                                 <td class="d-none d-md-table-cell">
                                     <span class="font-size-sm">
-                                        <a href="{{ route('profile.show', $profile->hero->user->id) }}">{{ $pda->user->nickname }}</a>
+                                        <a href="{{ route('profile.show', $pda->user->id) }}">{{ $pda->user->nickname }}</a>
                                     </span>
                                 </td>
                             </tr>
