@@ -5,9 +5,17 @@ namespace App\Repositories\Heroes;
 
 
 use App\Pda;
+use Illuminate\Database\Eloquent\Collection;
 
 interface PdaRepositoryInterface
 {
+    /**
+     * Get all pdas
+     *
+     * @return Collection
+     */
+    public function all();
+
     /**
      * Create a hero PDA
      *

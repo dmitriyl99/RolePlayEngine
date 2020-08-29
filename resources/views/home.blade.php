@@ -24,7 +24,7 @@
                             <i class="si si-users fa-2x"></i>
                         </td>
                         <td>
-                            <a href="#" class="font-size-h5 font-w600">Живые сталкеры</a>
+                            <a href="{{ route('pdas') }}" class="font-size-h5 font-w600">Живые сталкеры</a>
                             <div class="text-muted my-5">Список сталкеров, которым до сих пор счастливится коптить небо Зоны</div>
                         </td>
                     </tr>

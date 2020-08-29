@@ -4,6 +4,7 @@
 namespace App\Repositories\Heroes;
 
 use App\Pda;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class PdaRepository implements PdaRepositoryInterface
@@ -29,5 +30,15 @@ class PdaRepository implements PdaRepositoryInterface
     public function update($pda_id, $pda_data)
     {
         return Pda::find($pda_id)->update($pda_data);
+    }
+
+    /**
+     * Get all pdas
+     *
+     * @return Collection|void
+     */
+    public function all()
+    {
+        return Pda::with('user', 'hero')->orderBy('created_at', 'desc')->get();
     }
 }

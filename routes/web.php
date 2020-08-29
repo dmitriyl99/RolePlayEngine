@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\InfoController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -34,6 +35,7 @@ Route::middleware(['role-play'])->group(function () {
     // Info routes
     Route::get('/profiles', 'InfoController@profiles')->name('profiles');
     Route::get('/profiles/{id}', 'InfoController@showProfile')->name('profiles.show');
+    Route::get('pdas', [InfoController::class, 'pdas'])->name('pdas');
 
     Route::post('/profiles/{profileId}/confirm', 'HeroController@confirmProfile')->name('profiles.confirm');
     Route::post('/profiles/{profileId}/correction', 'HeroController@makeProfileCorrection')->name('profiles.correction');
