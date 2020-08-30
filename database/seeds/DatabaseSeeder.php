@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
 
         // Run user table seeder
         $this->call(UserTableSeeder::class);
+
+        // Run area table seeder
+        $this->call(AreaSeeder::class);
     }
 }
