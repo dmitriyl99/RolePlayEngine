@@ -63,8 +63,9 @@ class PlaceController extends Controller
      */
     public function update(PlaceRequest $request, $id)
     {
-        $this->placeRepository->update($id, $request->all());
-        return redirect()->route('home')->with('success', 'Игровое место изменено');
+        $place = $this->placeRepository->update($id, $request->all());
+        return redirect()->route('place', ['areaSlug' => $place->location->area->slug,
+            'locationSlug' => $place->location->slug, 'placeSlug' => $place->slug])->with('success', 'Игровое место изменено');
     }
 
     /**

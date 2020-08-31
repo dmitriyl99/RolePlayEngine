@@ -42,7 +42,7 @@ class AreaController extends Controller
     {
         $area = $this->areaRepository->create($request->all());
 
-        return redirect()->route('home')->with('success', "Зона \"$area->name\" создана");
+        return redirect()->route('area', $area->slug)->with('success', "Зона \"$area->name\" создана");
     }
 
     /**
@@ -66,8 +66,8 @@ class AreaController extends Controller
      */
     public function update(AreaRequest $request, $id)
     {
-        $this->areaRepository->update($id, $request->all());
-        return redirect()->route('home')->with('success', 'Игровая зона удалена отредактирована');
+        $area = $this->areaRepository->update($id, $request->all());
+        return redirect()->route('area', $area->slug)->with('success', 'Игровая зона удалена отредактирована');
     }
 
     /**

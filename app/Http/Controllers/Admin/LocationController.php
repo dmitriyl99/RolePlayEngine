@@ -67,8 +67,9 @@ class LocationController extends Controller
      */
     public function update(LocationRequest $request, $id)
     {
-        $this->locationRepository->update($id, $request->all());
-        return redirect()->route('home')->with('success', 'Локация изменена');
+        $location = $this->locationRepository->update($id, $request->all());
+        return redirect()->route('location', ['areaSlug' => $location->area->slug,
+            'locationSlug' => $location->slug])->with('success', 'Локация изменена');
     }
 
     /**
