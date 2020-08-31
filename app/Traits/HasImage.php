@@ -65,7 +65,7 @@ trait HasImage
             return;
         $attribute = $this->getImageAttributeName();
         $imageDirectory = $this->getUploadDirectory();
-        $filename = $image->getClientOriginalName() . Str::random() . '.' . $image->getClientOriginalExtension();
+        $filename = explode('.', $image->getClientOriginalName())[0] . Str::random() . '.' . $image->getClientOriginalExtension();
         $currentImage = $this->getAttribute($attribute);
         if ($currentImage)
             $this->deleteImage();
@@ -79,7 +79,7 @@ trait HasImage
      *
      * @return string
      */
-    public function getImageLink()
+    public function getImage()
     {
         $attribute = $this->getImageAttributeName();
         $imageDirectory = $this->getUploadDirectory();
