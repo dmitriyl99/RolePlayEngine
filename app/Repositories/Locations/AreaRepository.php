@@ -29,7 +29,9 @@ class AreaRepository implements AreaRepositoryInterface
      */
     public function update(int $area_id, array $area_data)
     {
-        return Area::find($area_id)->update($area_data);
+        $area = Area::findOrFail($area_id);
+        $area->update($area_data);
+        return $area;
     }
 
     /**
@@ -40,7 +42,7 @@ class AreaRepository implements AreaRepositoryInterface
      */
     public function getById($area_id)
     {
-        return Area::find($area_id);
+        return Area::findOrFail($area_id);
     }
 
     /**
@@ -51,7 +53,7 @@ class AreaRepository implements AreaRepositoryInterface
      */
     public function getBySlug($area_slug)
     {
-        return Area::where('slug', $area_slug)->first();
+        return Area::where('slug', $area_slug)->firstOrFail();
     }
 
     /**

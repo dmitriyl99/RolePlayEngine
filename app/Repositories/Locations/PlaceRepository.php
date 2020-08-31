@@ -17,7 +17,7 @@ class PlaceRepository implements PlaceRepositoryInterface
      */
     public function getById($place_id)
     {
-        return Place::find($place_id);
+        return Place::findOrFail($place_id);
     }
 
     /**
@@ -29,7 +29,7 @@ class PlaceRepository implements PlaceRepositoryInterface
      */
     public function getBySlug($place_slug)
     {
-        return Place::where('slug', $place_slug)->first();
+        return Place::where('slug', $place_slug)->firstOrFail();
     }
 
     /**
@@ -43,7 +43,8 @@ class PlaceRepository implements PlaceRepositoryInterface
     public function update($place_id, $place_data)
     {
         /** @var Place $place */
-        $place = Place::find($place_id)->update($place_data);
+        $place = Place::findOrFail($place_id);
+        $place->update($place_data);
         $place->saveImage(request()->file('image'));
         return $place;
     }

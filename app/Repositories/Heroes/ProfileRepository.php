@@ -26,7 +26,9 @@ class ProfileRepository implements ProfileRepositoryInterface
      */
     public function update($profile_id, $profile_data)
     {
-        return Profile::find($profile_id)->update($profile_data);
+        $profile = Profile::find($profile_id);
+        $profile->update($profile_data);
+        return $profile;
     }
 
     /**

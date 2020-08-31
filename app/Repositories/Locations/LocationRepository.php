@@ -40,7 +40,9 @@ class LocationRepository implements LocationRepositoryInterface
      */
     public function update($location_id, $location_data)
     {
-        return Location::find($location_id)->update($location_data);
+        $location = Location::query()->findOrFail($location_id);
+        $location->update($location_data);
+        return $location;
     }
 
     /**

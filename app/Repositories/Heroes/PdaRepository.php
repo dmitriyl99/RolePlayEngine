@@ -29,7 +29,9 @@ class PdaRepository implements PdaRepositoryInterface
      */
     public function update($pda_id, $pda_data)
     {
-        return Pda::find($pda_id)->update($pda_data);
+        $pda = Pda::find($pda_id);
+        $pda->update($pda_data);
+        return $pda;
     }
 
     /**

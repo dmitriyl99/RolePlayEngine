@@ -28,7 +28,9 @@ class PostRepository implements PostRepositoryInterface
      */
     public function update($post_id, $post_data)
     {
-        Post::find($post_id)->update($post_data);
+        $post = Post::find($post_id);
+        $post->update($post_data);
+        return $post;
     }
 
     /**
