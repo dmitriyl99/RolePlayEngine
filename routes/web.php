@@ -24,6 +24,9 @@ Route::middleware(['role-play'])->group(function () {
     // Profile routes
     Route::get('/user', 'UserController@index')->name('profile');
     Route::post('/user/avatar', [UserController::class, 'changeAvatar'])->name('user.avatar');
+    Route::prefix('user')->group(function () {
+        Route::resource('messages', 'MessageController');
+    });
     Route::get('/hero/create', 'HeroController@createhero')->name('hero.create');
     Route::post('/hero/create', 'HeroController@storeHero');
     Route::get('/hero/{heroId}/edit', 'HeroController@editHero')->name('hero.edit');
