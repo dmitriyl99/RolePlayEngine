@@ -31,6 +31,17 @@
                 </ul>
             @endguest
             @auth
+                <div class="btn-group" role="group">
+                    <a href="{{ route('messages.index') }}" class="btn btn-rounded btn-dual-secondary" data-toggle="tooltip" title="Личные сообщения">
+                        @if (Auth::user()->incomingMessages()->unread()->count() > 0)
+                            <i class="si si-envelope-open"></i>
+                            <span class="badge badge-primary badge-pill"
+                                  id="messages-count">{{ Auth::user()->incomingMessages()->unread()->count() }}</span>
+                        @else
+                            <i class="si si-envelope"></i>
+                        @endif
+                    </a>
+                </div>
                 @include('layouts.components.notifications')
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
