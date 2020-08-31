@@ -131,6 +131,26 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    /**
+     * Incoming messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function incomingMessages()
+    {
+        return $this->hasMany(Message::class, 'to_user_id', 'id');
+    }
+
+    /**
+     * Outgoing messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function outgoingMessages()
+    {
+        return $this->hasMany(Message::class, 'from_user_id', 'id');
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
