@@ -1,4 +1,4 @@
-jQuery(function(){
+initCkeditor = function () {
     // Init full text editor
     if (jQuery('#js-ckeditor:not(.js-ckeditor-enabled)').length) {
 
@@ -29,4 +29,8 @@ jQuery(function(){
         // Add .js-ckeditor-enabled class to tag it as activated
         jQuery('#js-ckeditor').addClass('js-ckeditor-enabled');
     }
+}
+
+jQuery(function(){
+    initCkeditor();
 });
