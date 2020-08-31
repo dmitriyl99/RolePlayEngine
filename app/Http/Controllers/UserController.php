@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -94,5 +95,14 @@ class UserController extends Controller
 
         $this->userRepository->delete($user);
         return redirect()->back();
+    }
+
+    public function changeAvatar(Request $request)
+    {
+        abort_if(!Auth::check(), 403);
+        /** @var User $user */
+        $user = Auth::user();
+        $user->saveImage($request->file('avatar'));
+        return redirect()->back()->with('success', 'Аватар изменён');
     }
 }

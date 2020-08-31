@@ -11,18 +11,33 @@
             <div class="row pb-20">
                 <div class="col-sm-12 col-md-6">
                     <img src="@if ($user->hasImage()) {{ $user->getImage() }} @else {{ asset('assets/img/avatars/avatar0.jpg') }} @endif" class="img-fluid" alt="">
+                    @if (Auth::check() &&  Auth::user()->id === $user->id)
+                        <h2 class="content-heading">Сменить аватар</h2>
+                        <form action="{{ route('user.avatar') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group @error('avatar') is-invalid @enderror">
+                                <div class="form-material form-material-primary">
+                                    <input type="file" name="avatar" id="avatar" class="form-control">
+                                    <label for="avatar">Загрузить аватар</label>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Сохранить</button>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-primary-dark text-body-color-light">Имя: <span class="font-w700">{{ $user->name }}</span>  a.k.a <span class="font-w700">{{ $user->nickname }}</span></li>
-                        <li class="list-group-item bg-primary-dark text-body-color-light">E-mail: @if ((Auth::user() &&  Auth::user()->id === $user->id) or (auth()->user() and auth()->user()->hasRole('admin'))) <a href="mailto:{{ $user->email }}" class="font-w700">{{ $user->email }}</a> <small>(Адрес виден только вам)</small> @else Незачем тебе это знать! @endif</li>
+                        <li class="list-group-item bg-primary-dark text-body-color-light">E-mail: @if ((Auth::check() &&  Auth::user()->id === $user->id) or (auth()->check() and auth()->user()->hasRole('admin'))) <a href="mailto:{{ $user->email }}" class="font-w700">{{ $user->email }}</a> <small>(Адрес не виден простым смертным)</small> @else Незачем тебе это знать! @endif</li>
                         <li class="list-group-item bg-primary-dark text-body-color-light">Зарегистрирован: <span class="font-w700 js-utc-to-local">{{ $user->created_at }}</span></li>
                     </ul>
                 </div>
             </div>
-            <div class="content-header">
-                <h3 class="content-heading text-body-color-light font-w700">Персонажи</h3>
-            </div>
+            <h3 class="content-heading text-body-color-light font-w700">Персонажи</h3>
             @if ($user->hasHeroes())
                 <div class="row">
                     @foreach($user->heroes as $hero)

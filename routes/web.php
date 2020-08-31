@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -22,6 +23,7 @@ Route::middleware(['role-play'])->group(function () {
 
     // Profile routes
     Route::get('/user', 'UserController@index')->name('profile');
+    Route::post('/user/avatar', [UserController::class, 'changeAvatar'])->name('user.avatar');
     Route::get('/hero/create', 'HeroController@createhero')->name('hero.create');
     Route::post('/hero/create', 'HeroController@storeHero');
     Route::get('/hero/{heroId}/edit', 'HeroController@editHero')->name('hero.edit');
