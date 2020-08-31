@@ -3,7 +3,7 @@
 @section('title', 'Добавить место для игры')
 
 @section('content')
-    <form action="{{ route('admin.places.store') }}" method="post">
+    <form action="{{ route('admin.places.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
             <div class="block-header">

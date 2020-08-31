@@ -26,7 +26,7 @@ class PlaceRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:50000',
-            'image' => 'nullable|file',
+            'image' => 'nullable|image',
             'area_id' => 'required|exists:areas,id',
             'location_id' => 'required|exists:locations,id'
         ];

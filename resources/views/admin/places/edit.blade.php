@@ -3,7 +3,7 @@
 @section('title', $place->name)
 
 @section('content')
-    <form action="{{ route('admin.places.update', $place->id) }}" method="post">
+    <form action="{{ route('admin.places.update', $place->id) }}" method="post" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
