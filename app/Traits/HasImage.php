@@ -49,9 +49,11 @@ trait HasImage
         $attribute = $this->getImageAttributeName();
         $image = $this->getAttribute($attribute);
         $imageDirectory = $this->getUploadDirectory();
-        Storage::disk('public')->delete($imageDirectory . $image);
-        $this->setAttribute($attribute, null);
-        $this->save();
+        if ($image) {
+            Storage::disk('public')->delete($imageDirectory . $image);
+            $this->setAttribute($attribute, null);
+            $this->save();
+        }
     }
 
     /**
