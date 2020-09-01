@@ -151,6 +151,51 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'from_user_id', 'id');
     }
 
+    /**
+     * User bans
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bans()
+    {
+        return $this->hasMany(Ban::class);
+    }
+
+    /**
+     * Ban user
+     *
+     * @param string $reason
+     * @param string $expiredAt
+     */
+    public function ban(string $reason, string $expiredAt)
+    {
+        if ($this->isBanned())
+            return;
+        $this->bans()->create([
+            'reason' => $reason,
+            'expired_at' => $expiredAt
+        ]);
+    }
+
+    /**
+     * Check if user is banned
+     *
+     * @return mixed
+     */
+    public function isBanned()
+    {
+        return $this->bans()->active()->exists();
+    }
+
+    public function unban()
+    {
+        if (!$this->isBanned())
+            return;
+        $ban = $this->bans()->active()->first();
+        $ban->active = false;
+        $ban->save();
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
