@@ -109,8 +109,10 @@
                     <div class="block-header">
                         <h3 class="block-title text-body-color-light font-w700">Оставить пост</h3>
                         <div class="block-options">
-                            <button class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Опубликовать
-                            </button>
+                            @if (auth()->user()->hasHeroes())
+                                <button class="btn btn-alt-success btn-rounded"><i class="si si-check"></i> Опубликовать
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <div class="block-content bg-primary-dark">
