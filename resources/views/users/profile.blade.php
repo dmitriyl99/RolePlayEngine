@@ -5,7 +5,7 @@
 @section('content')
     <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
         <div class="block-header">
-            <h3 class="block-title text-body-color-light text-center">Профиль игрока <span class="text-primary font-w700">{{ $user->nickname }}</span></h3>
+            <h3 class="block-title text-body-color-light text-center">Профиль игрока <span class="text-primary font-w700">{{ $user->nickname }}</span> @if ($user->isBanned()) <span class="badge badge-pill badge-warning">Забанен</span> @endif</h3>
         </div>
         <div class="block-content bg-primary-dark">
             <div class="row pb-20">
@@ -28,6 +28,38 @@
                             </div>
                         </form>
                     @endif
+                    @auth
+                        @if (Auth::user()->hasRole('admin'))
+                            <h2 class="content-heading pt-10">Банановые острова</h2>
+                            @if (! $user->isBanned())
+                                <form action="{{ route('user.ban', $user->slug) }}" method="post">
+                                    @csrf
+                                    <div class="form-group @error('reason') is-invalid @enderror">
+                                        <div class="form-material form-material-primary floating">
+                                            <input type="text" name="reason" id="reason" class="form-control" value="{{ old('reason') }}">
+                                            <label for="reason">Причина</label>
+                                        </div>
+                                        @error('reason') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    </div>
+                                    <div class="form-group @error('hours') is-invalid @enderror">
+                                        <div class="form-material form-material-primary floating">
+                                            <input type="number" name="hours" id="hours" class="form-control" value="{{ old('hours') }}">
+                                            <label for="hours">Время бана (в часах)</label>
+                                        </div>
+                                        @error('hours') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-alt-warning btn-rounded"><i class="si si-lock"></i> Забанить</button>
+                                    </div>
+                                </form>
+                            @else
+                                <form action="{{ route('user.unban', $user->slug) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-alt-success btn-rounded"><i class="si si-lock-open"></i> Разбанить</button>
+                                </form>
+                            @endif
+                        @endif
+                    @endauth
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <ul class="list-group list-group-flush">

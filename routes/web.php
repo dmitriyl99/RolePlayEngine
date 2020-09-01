@@ -39,6 +39,8 @@ Route::middleware(['role-play', 'ban'])->group(function () {
     Route::get('/hero/{heroId}/pda', 'HeroController@editPda')->name('hero.pda.show');
     Route::put('/hero/{heroId}/pda', 'HeroController@updatePda')->name('hero.pda.update');
     Route::get('/user/{user}', 'UserController@show')->name('profile.show');
+    Route::post('/user/{user}/ban', [UserController::class, 'ban'])->name('user.ban');
+    Route::post('/user/{user}/unban', [UserController::class, 'unban'])->name('user.unban');
 
     // Info routes
     Route::get('/profiles', 'InfoController@profiles')->name('profiles');

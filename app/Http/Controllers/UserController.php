@@ -85,6 +85,40 @@ class UserController extends Controller
     }
 
     /**
+     * Ban user
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function ban(Request $request, User $user)
+    {
+        auth()->user()->authorizeRole(['admin']);
+
+        $request->validate([
+            'reason' => 'required|max:255',
+            'hours' => 'required|integer'
+        ]);
+        $hours = $request->input('hours');
+        $expired = now()->addHours((int)$hours);
+        $user->ban($request->input('reason'), $expired);
+        return redirect()->back()->with('warning', "Пользователь {$user->nickname} отправлен на банановые острова на $hours часов");
+    }
+
+    /**
+     * Unban the user
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unban(User $user)
+    {
+        auth()->user()->authorizeRole(['admin']);
+        $user->unban();
+        return redirect()->back()->with('warning', "Пользователь {$user->nickname} разбанен");
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param User $user
