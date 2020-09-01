@@ -17,4 +17,18 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show banned page
+     *
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function banned()
+    {
+        if (! auth()->check())
+            return redirect()->route('home');
+        $ban = auth()->user()->bans()->active()->first();
+        auth()->logout();
+        return view('errors.banned', compact('ban'));
+    }
 }

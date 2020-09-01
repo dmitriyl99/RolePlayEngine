@@ -11,13 +11,16 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::middleware(['role-play'])->group(function () {
+Route::get('banned', [HomeController::class, 'banned'])->name('banned');
+
+Route::middleware(['role-play', 'ban'])->group(function () {
     // Home route
     Route::get('/', 'HomeController@index')->name('home');
 
