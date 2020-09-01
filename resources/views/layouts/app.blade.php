@@ -94,7 +94,7 @@
                 <div class="col-sm-12 col-md-5">
                     <div
                         class="block block-rounded text-body-color-light bg-primary-dark-op js-appear-enabled animated fadeInRight"
-                        style="height: 420px" data-toggle="appear">
+                        data-toggle="appear">
                         <div class="block-header">
                             <h3 class="block-title text-body-color-light fresh-posts text-right">Новые игроки</h3>
                         </div>
