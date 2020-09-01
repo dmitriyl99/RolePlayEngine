@@ -10,6 +10,10 @@ class Ban extends Model
         'reason', 'expired_at'
     ];
 
+    protected $casts = [
+        'expired_at' => 'datetime'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
