@@ -105,3 +105,9 @@ div.spoiler div.spoiler-content {
 .nav-tabs .nav-link.active {
     color: #e74c3c;
 }
+
+@media only screen and (max-width: 992px) {
+    .place-image {
+        max-width: 100%;
+    }
+}

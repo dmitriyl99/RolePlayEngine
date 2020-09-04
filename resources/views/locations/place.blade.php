@@ -28,7 +28,7 @@
         <div class="block-content bg-primary-dark">
             @if ($place->hasImage())
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ $place->getImage() }}" alt="{{ $place->name }}" class="img-fluid-100">
+                    <img src="{{ $place->getImage() }}" alt="{{ $place->name }}" class="img-fluid-100 place-image">
                 </div>
             @endif
             <h3 class="content-heading @if (!$place->hasImage()) pt-0 @endif text-body-color-light text-center">@if ($place->hasImage())
