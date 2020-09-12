@@ -18,6 +18,7 @@
         </div>
         <div class="content-header-section">
             <ul class="nav-main-header">
+                <li><a href="{{ route('encyclopedia.index') }}">Энциклопедия</a></li>
                 @foreach($areas as $area)
                     <li><a href="/{{ $area->slug }}">{{ $area->name }}</a></li>
                 @endforeach

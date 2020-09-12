@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\EncyclopediaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\UserController;
@@ -51,9 +52,13 @@ Route::middleware(['role-play', 'ban'])->group(function () {
     Route::post('/profiles/{profileId}/correction', 'HeroController@makeProfileCorrection')->name('profiles.correction');
     Route::post('/profiles/correction/{id}/mark-as-correct', 'HeroController@correctProfileCorrection')->name('profiles.correction.correct');
 
+    Route::get('/encyclopedia', 'EncyclopediaController@index')->name('encyclopedia.index');
+    Route::get('/encyclopedia/{encyclopedia}', 'EncyclopediaController@encyclopedia')->name('encyclopedia.encyclopedia');
+    Route::get('/encyclopedia/{encyclopedia}/{article}', 'EncyclopediaController@article')->name('encyclopedia.article');
+
     Route::get('/notifications/markAsRead', 'NotificationsController@markAsRead');
 
-    Route::namespace('Admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
         Route::resource('locations', 'LocationController');
         Route::resource('areas', 'AreaController');
         Route::resource('places', 'PlaceController');
