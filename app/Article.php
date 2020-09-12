@@ -15,11 +15,21 @@ class Article extends Model
         'title', 'content', 'encyclopedia_id'
     ];
 
+    public function encyclopedia()
+    {
+        return $this->belongsTo(Encyclopedia::class);
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function getUploadDirectory(): string

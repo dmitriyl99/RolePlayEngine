@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Encyclopedia;
 use App\Http\Controllers\Controller;
@@ -9,16 +9,10 @@ use Illuminate\Http\Request;
 class EncyclopediaController extends Controller
 {
 
-    public function index()
-    {
-        $encyclopedias = Encyclopedia::all();
-        return view('encyplopedia.index', compact('encyclopedia'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -29,53 +23,55 @@ class EncyclopediaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|stirng|max:255'
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255'
         ]);
         $encyclopedia = Encyclopedia::create($request->all());
         return redirect()->back()->with('success', "Энциклопедия \"{$encyclopedia->title}\" добавлена");
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Encyclopedia  $encyclopedia
-     * @return \Illuminate\Http\Response
+     * @param  \App\Encyclopedia  $encyclopedium
+     * @return \Illuminate\View\View
      */
-    public function edit(Encyclopedia $encyclopedia)
+    public function edit(Encyclopedia $encyclopedium)
     {
-        return view('admin.encyclopedia.edit', $encyclopedia);
+        return view('admin.encyclopedia.edit', compact('encyclopedium'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Encyclopedia  $encyclopedia
-     * @return \Illuminate\Http\Response
+     * @param  \App\Encyclopedia  $encyclopedium
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Encyclopedia $encyclopedia)
+    public function update(Request $request, Encyclopedia $encyclopedium)
     {
         $request->validate([
-            'title' => 'required|string|max:255'
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255'
         ]);
-        $encyclopedia->update($request->all());
-        return redirect()->back()->with('success', 'Энциклопедия отредактирована');
+        $encyclopedium->update($request->all());
+        return redirect()->route('encyclopedia.index')->with('success', 'Энциклопедия отредактирована');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Encyclopedia  $encyclopedia
-     * @return \Illuminate\Http\Response
+     * @param  \App\Encyclopedia  $encyclopedium
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Encyclopedia $encyclopedia)
+    public function destroy(Encyclopedia $encyclopedium)
     {
-        $encyclopedia->delete();
+        $encyclopedium->delete();
         return redirect()->back()->with('success', 'Экнциклопедия удалена');
     }
 }

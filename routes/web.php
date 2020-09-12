@@ -57,6 +57,8 @@ Route::middleware(['role-play', 'ban'])->group(function () {
         Route::resource('locations', 'LocationController');
         Route::resource('areas', 'AreaController');
         Route::resource('places', 'PlaceController');
+        Route::resource('encyclopedia', 'EncyclopediaController');
+        Route::resource('articles', 'ArticleController');
     });
 
     Route::post('post', 'RpgController@createPost')->name('post.create');
