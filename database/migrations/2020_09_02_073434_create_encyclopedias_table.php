@@ -16,6 +16,7 @@ class CreateEncyclopediasTable extends Migration
         Schema::create('encyclopedias', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('description')->nullable();
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

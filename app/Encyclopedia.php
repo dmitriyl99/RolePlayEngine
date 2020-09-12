@@ -11,8 +11,23 @@ class Encyclopedia extends Model
     use HasSlug;
 
     protected $fillable = [
-        'title'
+        'title', 'description'
     ];
+
+    /**
+     * Articles
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getSlugOptions(): SlugOptions
     {
