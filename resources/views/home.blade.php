@@ -28,6 +28,15 @@
                             <div class="text-muted my-5">Список сталкеров, которым до сих пор счастливится коптить небо Зоны</div>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="text-center" style="width: 65px">
+                            <i class="si si-notebook fa-2x"></i>
+                        </td>
+                        <td>
+                            <a href="{{ route('encyclopedia.index') }}" class="font-size-h5 font-w600">Энциклопедия</a>
+                            <div class="text-muted my-5">Энциклопедия Зоны</div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

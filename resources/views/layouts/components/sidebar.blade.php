@@ -50,8 +50,6 @@
                     @foreach($areas as $area)
                         <li><a href="{{ route('area', $area->slug) }}"><i class="si si-compass"></i>{{ $area->name }}</a></li>
                     @endforeach
-                    <li class="nav-main-heading">Другие разделы</li>
-                    <li><a href="{{ route('encyclopedia.index') }}"><i class="si si-notebook"></i>Энциклопедия</a></li>
                 </ul>
             </div>
             <!-- END Side Navigation -->
