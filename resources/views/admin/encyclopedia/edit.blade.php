@@ -3,7 +3,7 @@
 @section('title', $encyclopedium->title . ' - Энциклопедия')
 
 @section('content')
-    <form action="{{ route('admin.encyclopedia.update', $encyclopedium->slug) }}" method="post">
+    <form action="{{ route('admin.encyclopedia.update', $encyclopedium->slug) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="block block-rounded text-body-color-light mt-20 bg-primary-dark-op js-appear-enabled animated fadeIn" data-toggle="appear">
@@ -24,9 +24,23 @@
                 <div class="form-group @error('description') is-invalid @enderror">
                     <div class="form-material form-material-primary floating">
                         <input type="text" name="description" id="description" class="form-control text-body-color-light" value="{{ $encyclopedium->description }}">
-                        <label for="description">Описание</label>
+                        <label for="description">Краткое описание</label>
                     </div>
                     @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group @error('image') is-invalid @enderror">
+                    <div class="form-material form-material-primary">
+                        <input type="file" name="image" id="image" class="form-control text-body-color-light">
+                        <label for="image">Изображение</label>
+                    </div>
+                    @error('image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group @error('full_description') is-invalid @enderror">
+                    <div class="form-material form-material-primary">
+                        <textarea type="text" name="full_description" id="js-ckeditor">{{ $encyclopedium->full_description }}</textarea>
+                        <label for="js-ckeditor">Полное описание</label>
+                    </div>
+                    @error('full_description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
         </div>

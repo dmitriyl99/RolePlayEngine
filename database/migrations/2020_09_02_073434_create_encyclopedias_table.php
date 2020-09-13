@@ -17,6 +17,8 @@ class CreateEncyclopediasTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
+            $table->text('full_description');
+            $table->string('image')->nullable();
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

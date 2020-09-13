@@ -29,9 +29,12 @@ class EncyclopediaController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255'
+            'description' => 'nullable|string|max:255',
+            'full_description' => 'required|string|max:50000'
         ]);
-        $encyclopedia = Encyclopedia::create($request->all());
+        /** @var Encyclopedia $encyclopedia */
+        $encyclopedia = Encyclopedia::query()->create($request->all());
+        $encyclopedia->saveImage($request->file('image'));
         return redirect()->back()->with('success', "Энциклопедия \"{$encyclopedia->title}\" добавлена");
     }
 
@@ -57,9 +60,11 @@ class EncyclopediaController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255'
+            'description' => 'nullable|string|max:255',
+            'full_description' => 'required|string|max:50000'
         ]);
         $encyclopedium->update($request->all());
+        $encyclopedium->saveImage($request->file('image'));
         return redirect()->route('encyclopedia.index')->with('success', 'Энциклопедия отредактирована');
     }
 
