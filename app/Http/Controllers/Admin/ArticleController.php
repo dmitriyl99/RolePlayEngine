@@ -38,7 +38,7 @@ class ArticleController extends Controller
         $article = Article::query()->create($request->all());
         $article->saveImage($request->file('image'));
 
-        return redirect()->route('encyclopedia.article', $article->slug)->with('success', 'Статья добавлена');
+        return redirect()->route('encyclopedia.encyclopedia', $article->encyclopedia->slug)->with('success', 'Статья добавлена');
     }
 
     /**
@@ -71,7 +71,7 @@ class ArticleController extends Controller
 
         $article->update($request->all());
         $article->saveImage($request->file('image'));
-        return redirect()->route('encyclopedia.article', $article->slug)->with('success', 'Статья обновлена');
+        return redirect()->route('encyclopedia.encyclopedia', $article->encyclopedia->slug)->with('success', 'Статья обновлена');
     }
 
     /**
